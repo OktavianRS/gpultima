@@ -34,7 +34,8 @@
             <form action="" method="get">
                 <div class="b-form__search">
                     <img src="content/images/icons/search.png" alt="search">
-                    <input type="text" ng-model="searchText" placeholder="Vorgänge suchen (Name, Vorgangsnummer, Telefonnummer, E-Mail, Anschrift ...)">
+                    <input type="text" ng-model="searchText"
+                           placeholder="Vorgänge suchen (Name, Vorgangsnummer, Telefonnummer, E-Mail, Anschrift ...)">
                 </div>
             </form>
             <div class="b-form__results">
@@ -55,7 +56,8 @@
                             <img src="content/images/icons/singl_home.png" alt="">
                             <span class="number-op">{{item.id}}</span>
                         </td>
-                        <td><p>{{item.nameW}}</p><p>{{item.nameH}}</p></td>
+                        <td><p>{{item.nameW}}</p>
+                            <p>{{item.nameH}}</p></td>
                         <td>{{item.addres}}</td>
                         <td class="manager">
                             <img src="content/images/icons/user.png" alt="">
@@ -82,12 +84,16 @@
     <div class="container">
         <div class="b-tabs">
             <ul class="b-tabs__titles clearfix">
-                <li class="b-tabs__titles-item b-tabs__big-user" ui-sref="index({id: vm.params_id})"><span>ANTRAGSTELLER</span>
+                <li class="b-tabs__titles-item b-tabs__big-user" ui-sref="index({id: vm.params_id})">
+                    <span>ANTRAGSTELLER</span>
                 </li>
-                <li class="b-tabs__titles-item b-tabs__titles-item--current b-tabs__home" ui-sref="second({id: vm.params_id})"><span>IMMOBILIE</span>
+                <li class="b-tabs__titles-item b-tabs__titles-item--current b-tabs__home"
+                    ui-sref="second({id: vm.params_id})"><span>IMMOBILIE</span>
                 </li>
-                <li class="b-tabs__titles-item b-tabs__home-bank" ui-sref="third({id: vm.params_id})"><span>KREDIT-DATEN</span></li>
-                <li class="b-tabs__titles-item b-tabs__home-bank" ui-sref="fourth({id: vm.params_id})"><span>DOKUMENTE</span></li>
+                <li class="b-tabs__titles-item b-tabs__home-bank" ui-sref="third({id: vm.params_id})">
+                    <span>KREDIT-DATEN</span></li>
+                <li class="b-tabs__titles-item b-tabs__home-bank" ui-sref="fourth({id: vm.params_id})">
+                    <span>DOKUMENTE</span></li>
             </ul>
             <div class="b-tabs__container">
                 <div class="b-form__title-dark b-form__title">Objektdaten</div>
@@ -205,19 +211,23 @@
                                         <label for="first_name">Dachgeschoss</label>
                                         <span class="b-form__col b-form__vert">
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.basisangaben.dachgeschoss" name="vorh2" id="ja" value="Voll ausgebaut" type="radio">
+                                                <input ng-model="vm.bank.basisangaben.dachgeschoss" name="vorh2" id="ja"
+                                                       value="Voll ausgebaut" type="radio">
                                                 <label for="ja">Voll ausgebaut</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.basisangaben.dachgeschoss" name="vorh2" id="nein" value="Teilweise ausgebaut" type="radio">
+                                                <input ng-model="vm.bank.basisangaben.dachgeschoss" name="vorh2"
+                                                       id="nein" value="Teilweise ausgebaut" type="radio">
                                                 <label for="nein">Teilweise ausgebaut</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.basisangaben.dachgeschoss" name="vorh2" id="nein" value="Nicht ausgebaut" type="radio">
+                                                <input ng-model="vm.bank.basisangaben.dachgeschoss" name="vorh2"
+                                                       id="nein" value="Nicht ausgebaut" type="radio">
                                                 <label for="nein">Nicht ausgebaut</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.basisangaben.dachgeschoss" name="vorh2" id="nein" value="Flachdach" type="radio">
+                                                <input ng-model="vm.bank.basisangaben.dachgeschoss" name="vorh2"
+                                                       id="nein" value="Flachdach" type="radio">
                                                 <label for="nein">Flachdach</label>
                                             </span>
                                         </span>
@@ -243,15 +253,18 @@
                                         <label for="first_name">Keller</label>
                                         <span class="b-form__col b-form__vert">
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.basisangaben.keller" value="Unterkellert" name="vorh4" id="ja" type="radio">
+                                                <input ng-model="vm.bank.basisangaben.keller" value="Unterkellert"
+                                                       name="vorh4" id="ja" type="radio">
                                                 <label for="ja">Unterkellert</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.basisangaben.keller" value="Teilunterkellert" name="vorh4" id="nein" type="radio">
+                                                <input ng-model="vm.bank.basisangaben.keller" value="Teilunterkellert"
+                                                       name="vorh4" id="nein" type="radio">
                                                 <label for="nein">Teilunterkellert</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.basisangaben.keller" value="Nicht unterkellert" name="vorh4" id="nein" type="radio">
+                                                <input ng-model="vm.bank.basisangaben.keller" value="Nicht unterkellert"
+                                                       name="vorh4" id="nein" type="radio">
                                                 <label for="nein">Nicht unterkellert</label>
                                             </span>
                                         </span>
@@ -273,15 +286,18 @@
                                         <label for="first_name">Wie wird die Wohnfläche genutzt?</label>
                                         <span class="b-form__col b-form__inline">
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.nutzung.wohnflache" value="Eigengenutzt" name="vorh5" id="ja" type="radio">
+                                                <input ng-model="vm.bank.nutzung.wohnflache" value="Eigengenutzt"
+                                                       name="vorh5" id="ja" type="radio">
                                                 <label for="ja">Eigengenutzt</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.nutzung.wohnflache" value="Vermietet" name="vorh5" id="nein" type="radio">
+                                                <input ng-model="vm.bank.nutzung.wohnflache" value="Vermietet"
+                                                       name="vorh5" id="nein" type="radio">
                                                 <label for="nein">Vermietet</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.nutzung.wohnflache" value="Beides" name="vorh5" id="nein" type="radio">
+                                                <input ng-model="vm.bank.nutzung.wohnflache" value="Beides" name="vorh5"
+                                                       id="nein" type="radio">
                                                 <label for="nein">Beides</label>
                                             </span>
                                         </span>
@@ -290,11 +306,13 @@
                                         <label for="first_name">Gewerbefläche vorhanden</label>
                                         <span class="b-form__col b-form__inline">
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.nutzung.gewerbeflache" value="1" name="vorh6" id="ja" type="radio">
+                                                <input ng-model="vm.bank.nutzung.gewerbeflache" value="1" name="vorh6"
+                                                       id="ja" type="radio">
                                                 <label for="ja">ja</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.nutzung.gewerbeflache" value="0" name="vorh6" id="nein" type="radio">
+                                                <input ng-model="vm.bank.nutzung.gewerbeflache" value="0" name="vorh6"
+                                                       id="nein" type="radio">
                                                 <label for="nein">nein</label>
                                             </span>
                                         </span>
@@ -311,11 +329,13 @@
                                         <label for="first_name">Erbbaurecht vorhanden?</label>
                                         <span class="b-form__col b-form__inline">
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.zusatzliche.erbbaurecht" value="1" name="vorh7" id="ja" type="radio">
+                                                <input ng-model="vm.bank.zusatzliche.erbbaurecht" value="1" name="vorh7"
+                                                       id="ja" type="radio">
                                                 <label for="ja">ja</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.zusatzliche.erbbaurecht" value="0" name="vorh7" id="nein" type="radio">
+                                                <input ng-model="vm.bank.zusatzliche.erbbaurecht" value="0" name="vorh7"
+                                                       id="nein" type="radio">
                                                 <label for="nein">nein</label>
                                             </span>
                                         </span>
@@ -329,11 +349,13 @@
                                         <label for="first_name">Wurde das Objekt in der Vergangenheit modernisiert?</label>
                                         <span class="b-form__col b-form__inline">
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.zusatzliche.objekt" value="1" name="vorh8" id="ja" type="radio">
+                                                <input ng-model="vm.bank.zusatzliche.objekt" value="1" name="vorh8"
+                                                       id="ja" type="radio">
                                                 <label for="ja">ja</label>
                                             </span>
                                             <span class="b-form__radio">
-                                                <input ng-model="vm.bank.zusatzliche.objekt" value="0" name="vorh8" id="nein" type="radio">
+                                                <input ng-model="vm.bank.zusatzliche.objekt" value="0" name="vorh8"
+                                                       id="nein" type="radio">
                                                 <label for="nein">nein</label>
                                             </span>
                                         </span>
@@ -555,10 +577,133 @@
 
                 </div>
 
+                <!--Grundbuchangaben-->
+                <div class="second_form clearfix">
+                    <h4 class="b-form__sub-header">Grundbuchangaben:</h4>
+                    <h4 class="b-form__sub-header bankverbindung">
+                        <img class="btn btn__plus btn--light"
+                             src="content/images/icons/plus.png"
+                             ng-click="vm.addGrundbuchdaten()"
+                             alt="plus_btn"> Grundbuchdaten erfassen</h4>
+                    <div class=" b-form__block">
+                        <span class="b-form__address clearfix ">
+                                    <span class="b-form__input b-form__address-short">
+                                        <label for="grunduch">Grundbuch von (Ort)</label>
+                                        <input id="grunduch" type="text">
+                                    </span>
+                                    <span class="b-form__input b-form__address-short">
+                                        <label for="blatt">Blatt (Band: optional)</label>
+                                        <input id="blatt" type="text">
+                                    </span>
+                                </span>
 
+                        <h4 class="b-form__sub-header">
+                            Flurstücke:<span>Welche Flurstücke sind vorhanden?</span></h4>
+                        <div class="b-form__list-view b-form__list-view--horizontal clearfix">
+                            <div class="b-form__list-view-item">
+                                <a>
+                                    <img class="btn btn__plus btn--light"
+                                         src="content/images/icons/plus.png"
+                                         alt="plus_btn">
+                                    Weiteres Flurstück erfassen
+                                </a>
+                            </div>
+
+                        </div>
+                        <style>
+                            .short_input {
+                                width: 100px !important;
+                            }
+
+                            .short_span {
+                                width: 120px !important;
+                            }
+                        </style>
+                        <div style="background: rgb(255,255,255);padding: 5px 5px;margin: 0 1.5px 0 1px;">
+                            <span class="b-form__address clearfix ">
+                                    <span class="b-form__input short_span b-form__address-short">
+                                        <label for="flur">Flur</label>
+                                        <input class="short_input" id="flur" type="text">
+                                    </span>
+                                    <span class="b-form__input short_span b-form__address-short">
+                                        <label for="flurstuck">Flurstück</label>
+                                        <input class="short_input" id="flurstuck" type="text">
+                                    </span>
+                                <span class="b-form__input short_span b-form__address-short">
+                                        <label for="anteil">Anteil am Flurstück</label>
+                                        <input class="short_input" id="anteil" type="text">
+                                    </span>
+                                <span class="b-form__input short_span b-form__address-short">
+                                        <label for="anteil2"></label>
+                                        <input class="short_input" id="anteil2" type="text">
+                                    </span>
+                                <span class="b-form__input short_span b-form__address-short">
+                                        <label for="des_flurs">Größe des Flurstücks</label>
+                                        <input class="short_input" id="des_flurs" type="text">
+                                    </span>
+                                </span>
+                        </div>
+                        <h4 class="b-form__sub-header">
+                            Rechte in Abteilung II vorhanden?
+                        </h4>
+                        <div style="background: rgb(255,255,255);padding: 5px 5px;margin: 0 1.5px 0 1px;">
+                            <span class="b-form__address clearfix ">
+                                    <span class="b-form__input short_span b-form__address-short">
+                                        <label for="betrag">Betrag (wertmindernd)</label>
+                                        <input class="short_input" id="betrag" type="text">
+                                    </span>
+                                    <span class="b-form__input short_span b-form__address-short">
+                                        <label for="beschreibung">Beschreibung</label>
+                                        <input class="short_input" id="beschreibung" type="text">
+                                    </span>
+                                </span>
+                        </div>
+                        <span class="b-form__address clearfix ">
+                                    <span class="b-form__input b-form__address-short">
+                                        <label for="anmerkungen">Weitere Anmerkungen zum Grundbuch</label>
+                                        <textarea id="anmerkungen"></textarea>
+                                    </span>
+                                </span>
+                    </div>
+
+
+                </div>
+                <!--Grundbuchangaben END-->
+
+                <!--Darlehen-->
+                <!--<div class="second_form clearfix">-->
+                    <!--<h4 class="b-form__sub-header">-->
+                        <!--Darlehen:<span>Sind Rechte in Abteilung III im Grundbuch vorhanden?</span></h4>-->
+                    <!--<h4 class="b-form__sub-header bankverbindung">-->
+                        <!--<img class="btn btn__plus btn&#45;&#45;light"-->
+                             <!--src="content/images/icons/plus.png"-->
+                             <!--ng-click="vm.addBank()"-->
+                             <!--alt="plus_btn"> Darlehen erfassen</h4>-->
+                    <!--<div class="b-form__list-view b-form__list-view&#45;&#45;horizontal clearfix">-->
+                        <!--<div class="b-form__list-view-item">-->
+                            <!--<a>-->
+                                <!--<img class="btn btn__plus btn&#45;&#45;light"-->
+                                     <!--src="content/images/icons/plus.png"-->
+                                     <!--alt="plus_btn">-->
+                                <!--Weiteres Darlehen erfassen-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="b-form__list-view-item">-->
+                            <!--<a>-->
+                                <!--<img class="btn btn__plus btn&#45;&#45;light"-->
+                                     <!--src="content/images/icons/plus.png"-->
+                                     <!--alt="plus_btn">-->
+                                <!--Darlehensdaten anfragen-->
+                            <!--</a>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                <!--</div>-->
+                <!--END-->
                 <div class="b-form__title-light b-form__title">Zusatzangaben</div>
 
             </div>
+
         </div>
         <div class="b-tabs">
             <ul class="b-tabs__titles clearfix">
