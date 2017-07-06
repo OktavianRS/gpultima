@@ -1,4 +1,3 @@
-
 <header class="b-header">
     <div class="container clearfix">
         <nav class="b-header__main-nav" role="navigation">
@@ -49,7 +48,8 @@
             <form action="" method="get">
                 <div class="b-form__search">
                     <img src="content/images/icons/search.png" alt="search">
-                    <input type="text" ng-model="searchText" placeholder="Vorgänge suchen (Name, Vorgangsnummer, Telefonnummer, E-Mail, Anschrift ...)">
+                    <input type="text" ng-model="searchText"
+                           placeholder="Vorgänge suchen (Name, Vorgangsnummer, Telefonnummer, E-Mail, Anschrift ...)">
                 </div>
             </form>
             <div class="b-form__results">
@@ -70,7 +70,8 @@
                             <img src="content/images/icons/singl_home.png" alt="">
                             <span class="number-op">{{item.id}}</span>
                         </td>
-                        <td><p>{{item.nameW}}</p><p>{{item.nameH}}</p></td>
+                        <td><p>{{item.nameW}}</p>
+                            <p>{{item.nameH}}</p></td>
                         <td>{{item.addres}}</td>
                         <td class="manager">
                             <img src="content/images/icons/user.png" alt="">
@@ -138,16 +139,18 @@
                             </select>
                         </span>
                         <div class="b-form__child-item">
-                        <h4>Wie wird die lmmobilie genutzt?</h4>
-                        <span class="b-form__radio">
-                                <input name="eigennutzung" id="eigennutzung" type="radio" value="Eigennutzung" ng-model="vm.data.genutzt">
+                            <h4>Wie wird die lmmobilie genutzt?</h4>
+                            <span class="b-form__radio">
+                                <input name="eigennutzung" id="eigennutzung" type="radio" value="Eigennutzung"
+                                       ng-model="vm.data.genutzt">
                                 <label for="eigennutzung">Eigennutzung</label>
                             </span>
-                        <span class="b-form__radio">
-                                <input name="vermietet" id="vermietet" type="radio" value="Vermietet" ng-model="vm.data.genutzt">
+                            <span class="b-form__radio">
+                                <input name="vermietet" id="vermietet" type="radio" value="Vermietet"
+                                       ng-model="vm.data.genutzt">
                                 <label for="vermietet">Vermietet</label>
                             </span>
-                        <span class="b-form__radio">
+                            <span class="b-form__radio">
                                 <input name="beides" id="beides" type="radio" value="Beides" ng-model="vm.data.genutzt">
                                 <label for="beides">Beides</label>
                             </span>
@@ -161,33 +164,38 @@
                             </span>
                         </div>
                         <span class="b-form__input">
-                            <label for="property">Werbung</label>
-                            <select id="property">
+                            <label for="werbung">Werbung</label>
+                            <select id="werbung">
                                 <option value="-1" selected="selected">Bitte wählen Sie ...</option>
                                 <option value="1">Verheiratet</option>
-                                <option value="2">Ledig</option>
-                                <option value="3">Getrennt lebend</option>
-                                <option value="4">Geschieden</option>
-                                <option value="5">Lebenspartnerschaft</option>
-                                <option value="6">Verwitwet</option>
+                               <option value="2">Horst</option>
+ <option value="3">Bild</option>
+ <option value="4">Mailing</option>
+ <option value="5">Empfehlung</option>
+ <option value="6">Internet</option>
+ <option value="7">Promotion</option>
+ <option value="8">Morgenpost</option>
+ <option value="9">Kiel</option>
+                                <option value="10">Schnellantrag</option>
+
+
                             </select>
                         </span>
                         <span class="b-form__input">
                             <label for="property">Kontaktart</label>
                             <select id="property">
                                 <option value="-1" selected="selected">Bitte wählen Sie ...</option>
-                                <option value="1">Verheiratet</option>
-                                <option value="2">Ledig</option>
-                                <option value="3">Getrennt lebend</option>
-                                <option value="4">Geschieden</option>
-                                <option value="5">Lebenspartnerschaft</option>
-                                <option value="6">Verwitwet</option>
+                                <option value="1">E-Mail</option>
+                                <option value="2">telefonisch</option>
+                                <option value="3">per Post</option>
+                                <option value="4">direkt</option>
+                                <option value="5">Internet</option>
                             </select>
                         </span>
                         <div class="b-form__child-item">
                             <h4>Partnergeschäft</h4>
                             <span class="b-form__radio">
-                                    <input  value="0" id="nein" type="radio">
+                                    <input value="0" id="nein" type="radio">
                                     <label for="nein">nein</label>
                                 </span>
                             <span class="b-form__radio">
@@ -196,12 +204,11 @@
                                 </span>
                             <select id="partners">
                                 <option value="-1" selected="selected">Bitte wählen Sie ...</option>
-                                <option value="1">Verheiratet</option>
-                                <option value="2">Ledig</option>
-                                <option value="3">Getrennt lebend</option>
-                                <option value="4">Geschieden</option>
-                                <option value="5">Lebenspartnerschaft</option>
-                                <option value="6">Verwitwet</option>
+                                <option value="1">Michael Tauchert </option>
+                                <option value="2">Hermann Kahlke</option>
+                                <option value="3">Volker Schwarz</option>
+                                <option value="4">Arne Nöthling</option>
+                                <option value="5">Friedegunde Wilhelm</option>
                             </select>
                         </div>
                         <div class="b-form__child-item">
