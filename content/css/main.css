@@ -1534,3 +1534,23 @@ input {
     padding-left: 5px;
 }
 
+.user > .username {
+    color: #908a8a;
+    padding-left: 5px; 
+    margin-right: 40px;
+}
+
+.user > .password-label {
+    color: #908a8a;
+    padding-left: 5px; 
+    margin-right: 20px;
+}
+
+.delete-button {
+    cursor: pointer;
+}
+
+.initial-pass {
+    margin-left: 100px;
+    color: #908a8a;
+}
