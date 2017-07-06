@@ -274,7 +274,7 @@
                 name: 'Lebens-/ Rentenversicherung',
                 max: 3,
                 current: 0,
-                id: 'Rentenversicherung',
+                id: 'LebensRentenversicherung',
                 items: []
             },
             {
@@ -419,7 +419,7 @@
                     if (mem_index.data.menuBank.hasOwnProperty(key)) {
                         bankData = {};
                         bankName = key.replace(tableName, '');
-                        console.log(mem_index.data.menuBank[key]);
+                        console.log(eval(mem_index.data.menuBank[key]), bankName);
                         bankData[bankName] = eval(mem_index.data.menuBank[key]);
                         if ((bankIndex = vm.menuBankIdList2.indexOf(bankName)) >= 0) {
                             mem_index.data.menuTwoBank.push(bankData);
