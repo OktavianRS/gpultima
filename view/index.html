@@ -1,0 +1,1463 @@
+<header class="b-header">
+    <div class="container clearfix">
+        <nav class="b-header__main-nav" role="navigation">
+            <ul class="b-header__nav clearfix">
+                <li class="b-header__nav-item">
+                    <a ui-sref="dashboard">Übersicht</a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="b-header__links-nav" role="navigation">
+            <ul class="b-header__nav clearfix">
+                <li class="b-header__nav-item b-header__links-search">
+                    <a class="search" ng-click='toggleModal()'></a>
+                </li>
+                <li class="b-header__nav-item">
+                    <a href="#">Schließen</a>
+                </li>
+                <li class="b-header__nav-item b-header__links-user">
+                    <a href="#"></a>
+                </li>
+            </ul>
+        </nav>
+        <div class="b-header__logo clearfix">
+            <a ui-sref="dashboard" class="b-header__logo-link">
+                <img class="b-header__logo-image" src="content/images/logo.png" alt="Ultima">
+            </a>
+        </div>
+    </div>
+
+    <modal-dialog show='modalShown' height='90%'>
+        <div class="search-block">
+            <form action="" method="get">
+                <div class="b-form__search">
+                    <img src="content/images/icons/search.png" alt="search">
+                    <input type="text" ng-model="searchText" placeholder="Vorgänge suchen (Name, Vorgangsnummer, Telefonnummer, E-Mail, Anschrift ...)">
+                </div>
+            </form>
+            <div class="b-form__results">
+                <table class="b-form__results-table">
+                    <thead>
+                    <tr>
+                        <th class="first">Vorgans-nummer</th>
+                        <th>Name Antragsteller</th>
+                        <th>Anschrift Immobilie</th>
+                        <th>Kundenbetreuer</th>
+                        <th>Bearbeiter</th>
+                        <th>Letztes Ereignis</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.users | filter : searchText">
+                        <td class="column-number-op first">
+                            <img src="content/images/icons/singl_home.png" alt="">
+                            <span class="number-op">{{item.id}}</span>
+                        </td>
+                        <td><p>{{item.nameW}}</p><p>{{item.nameH}}</p></td>
+                        <td>{{item.addres}}</td>
+                        <td class="manager">
+                            <img src="content/images/icons/user.png" alt="">
+                            <p>{{item.manager}}</p>
+                            <p>Ultima GmbH</p>
+                        </td>
+                        <td class="manager">
+                            <img src="content/images/icons/user.png" alt="">
+                            <div>
+                                <p>{{item.addres}}</p>
+                                <p class="company">Ultima GmbH</p>
+                            </div>
+                        </td>
+                        <td>{{item.event}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </modal-dialog>
+
+</header>
+<main class="b-main">
+    <div class="container">
+        <div class="b-tabs">
+            <ul class="b-tabs__titles clearfix">
+                <li class="b-tabs__titles-item b-tabs__titles-item--current b-tabs__big-user" ui-sref="index({id: vm.params_id})"><span>ANTRAGSTELLER</span>
+                </li>
+                <li class="b-tabs__titles-item b-tabs__home" ui-sref="second({id: vm.params_id})"><span>IMMOBILIE</span></li>
+                <li class="b-tabs__titles-item b-tabs__home-bank" ui-sref="third({id: vm.params_id})"><span>KREDIT-DATEN</span></li>
+                <li class="b-tabs__titles-item b-tabs__home-bank" ui-sref="fourth({id: vm.params_id})"><span>DOKUMENTE</span></li>
+            </ul>
+            <div class="b-tabs__container">
+                <div class="b-form__title-dark b-form__title">Persönliche Daten</div>
+                <div class="first_form clearfix">
+                    <div class="first_form clearfix">
+                        <div class="wrap-form">
+                            <h4 class="b-form__sub-header">Antragsteller 1</h4>
+                            <div class="b-form__block">
+                                <div class="b-form__group">
+                                    <div class="b-form__col b-form__inline">
+                                <span class="b-form__radio">
+                                    <input name="sex1" id="herr1" ng-checked="vm.data.antragsteller1.sex == 1" type="radio" ng-click="vm.data.antragsteller1.sex = 1">
+                                    <label for="herr1">Herr</label>
+                                </span>
+                                        <span class="b-form__radio">
+                                    <input name="sex1" id="frau1" ng-checked="vm.data.antragsteller1.sex == 2" type="radio" ng-click="vm.data.antragsteller1.sex = 2">
+                                    <label for="frau1">Frau</label>
+                                </span>
+                                        <span class="b-form__checkbox">
+                                    <input name="prefix" id="prof1" type="checkbox"
+                                           ng-model="vm.data.antragsteller1.prof">
+                                    <label for="prof1">Prof.</label>
+                                </span>
+                                        <span class="b-form__checkbox">
+                                    <input name="prefix" id="dr1" type="checkbox" ng-model="vm.data.antragsteller1.dr">
+                                    <label for="dr1">Dr.</label>
+                                </span>
+                                    </div>
+                                    <div class="b-form__half-col b-form__half-col--first">
+                                <span class="b-form__input">
+                                    <label for="first_name">Vorname</label>
+                                    <input id="first_name" type="text" ng-model="vm.data.antragsteller1.first_name">
+                                </span>
+                                        <span class="b-form__phone clearfix">
+                                    <label for="code">Telefon</label>
+                                    <input class="b-form__phone-code" id="code" type="text"
+                                           ng-model="vm.data.antragsteller1.code">
+                                    <span> - </span>
+                                    <input class="b-form__phone-tel" id="phone" type="text"
+                                           ng-model="vm.data.antragsteller1.phone">
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="date">Geburtsdatum</label>
+                                    <input id="date" type="text" ng-model="vm.data.antragsteller1.date">
+                                </span>
+                                    </div>
+                                    <div class="b-form__half-col b-form__half-col--last">
+                                <span class="b-form__input">
+                                    <label for="second_name">Nachname</label>
+                                    <input id="second_name" type="text" ng-model="vm.data.antragsteller1.second_name">
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="email">E-Mail</label>
+                                    <input id="email" type="email" ng-model="vm.data.antragsteller1.email">
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="comment">weitere Kontaktmöglichkeiten</label>
+                                    <textarea id="comment" ng-model="vm.data.antragsteller1.comment"></textarea>
+                                </span>
+                                    </div>
+                                </div>
+                                <div class="b-form__group b-form__group--same-height">
+                                    <div class="b-form__half-col b-form__half-col--first">
+                                <span class="b-form__address clearfix">
+                                    <span class="b-form__input b-form__address-long">
+                                        <label for="street_name">Straße</label>
+                                        <input id="street_name" type="text"
+                                               ng-model="vm.data.antragsteller1.street_name">
+                                    </span>
+                                    <span class="b-form__input b-form__address-short">
+                                        <label for="street_numb">Nr.</label>
+                                        <input id="street_numb" type="text"
+                                               ng-model="vm.data.antragsteller1.street_numb">
+                                    </span>
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="seit">Wohnhaft seit</label>
+                                    <input id="seit" type="text" ng-model="vm.data.antragsteller1.seit">
+                                </span>
+                                    </div>
+                                    <div class="b-form__half-col b-form__half-col--last">
+                                <span class="b-form__address clearfix">
+                                    <span class="b-form__input b-form__address-short">
+                                        <label for="plz">PLZ</label>
+                                        <input id="plz" type="text" ng-model="vm.data.antragsteller1.plz">
+                                    </span>
+                                    <span class="b-form__input b-form__address-long">
+                                        <label for="ort">Ort</label>
+                                        <input id="ort" type="text" ng-model="vm.data.antragsteller1.ort">
+                                    </span>
+                                </span>
+                                    </div>
+                                </div>
+                                <div class="b-form__group">
+                                    <div class="b-form__half-col b-form__half-col--first">
+                                <span class="b-form__input">
+                                    <label for="famili">Familienstand</label>
+                                    <select id="famili" ng-model="vm.data.antragsteller1.famili" convert-to-number>
+                                        <option value="-1" selected="selected">Bitte wählen Sie ...</option>
+                                        <option value="1">Verheiratet</option>
+                                        <option value="2">Ledig</option>
+                                        <option value="3">Getrennt lebend</option>
+                                        <option value="4">Geschieden</option>
+                                        <option value="5">Lebenspartnerschaft</option>
+                                        <option value="6">Verwitwet</option>
+                                    </select>
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="country">Staatsangehörigkeit</label>
+                                    <select id="country" class="gwt-ListBox" ng-model="vm.data.antragsteller1.country" convert-to-number>
+                                        <option
+                                                value="-1" selected="selected">Bitte wählen Sie ...</option><option
+                                            value="10">Deutschland</option><option
+                                            value="13">Frankreich</option><option
+                                            value="22">Niederlande</option><option
+                                            value="197">Schweiz</option><option
+                                            value="229">Türkei</option><option
+                                            value="33">Großbritannien und Nordirland</option><option
+                                            value="-2">─────────────────────────</option><option
+                                            value="-3">EU-Länder</option><option
+                                            value="7">Belgien</option><option
+                                            value="8">Bulgarien</option><option
+                                            value="9">Dänemark</option><option
+                                            value="10">Deutschland</option><option
+                                            value="11">Estland</option><option
+                                            value="12">Finnland</option><option
+                                            value="13">Frankreich</option><option
+                                            value="14">Griechenland</option><option
+                                            value="15">Irland</option><option
+                                            value="16">Italien</option><option
+                                            value="17">Kroatien</option><option
+                                            value="18">Lettland</option><option
+                                            value="19">Litauen</option><option
+                                            value="20">Luxemburg</option><option
+                                            value="21">Malta</option><option
+                                            value="22">Niederlande</option><option
+                                            value="23">Österreich</option><option
+                                            value="24">Polen</option><option
+                                            value="25">Portugal</option><option
+                                            value="26">Rumänien</option><option
+                                            value="27">Schweden</option><option
+                                            value="28">Slowakei</option><option
+                                            value="29">Slowenien</option><option
+                                            value="30">Spanien</option><option
+                                            value="31">Tschechische Republik</option><option
+                                            value="32">Ungarn</option><option
+                                            value="33">Großbritannien und Nordirland</option><option
+                                            value="34">Zypern</option><option
+                                            value="-2">─────────────────────────</option><option
+                                            value="-3">Nicht-EU-Länder</option><option
+                                            value="35">Afghanistan</option><option
+                                            value="36">Ägypten Arabische Republik</option><option
+                                            value="37">Åland</option><option value="38">Albanien</option><option
+                                            value="39">Algerien</option><option
+                                            value="40">Amerikanisch-Samoa</option><option
+                                            value="41">Andorra Fürstentum</option><option
+                                            value="42">Angola</option><option value="43">Anguilla</option><option
+                                            value="44">Antarktis</option><option
+                                            value="45">Antigua und Barbuda</option><option value="46">Äquatorialguinea Republik</option><option
+                                            value="47">Argentinien</option><option
+                                            value="48">Armenien</option><option value="49">Aruba</option><option
+                                            value="50">Aserbaidschan</option><option
+                                            value="51">Äthiopien</option><option value="52">Australien</option><option
+                                            value="53">Bahamas</option><option
+                                            value="54">Bahrain</option><option value="55">Bangladesch</option><option
+                                            value="56">Barbados</option><option
+                                            value="57">Belize</option><option value="58">Benin</option><option
+                                            value="59">Bermuda-Inseln</option><option
+                                            value="60">Bhutan</option><option value="61">Bolivien</option><option
+                                            value="62">Bosnien und Herzegowina</option><option
+                                            value="63">Botsuana</option><option
+                                            value="64">Bouvet-Insel</option><option value="65">Brasilien</option><option
+                                            value="66">Britische Territorien im Indischen Ozean</option><option
+                                            value="67">Brunei Darussalam</option><option
+                                            value="68">Burkina Faso</option><option value="69">Burundi</option><option
+                                            value="70">Chile</option><option value="71">China</option><option
+                                            value="72">Cookinseln</option><option
+                                            value="73">Costa Rica</option><option value="74">Côte d'Ivoire </option><option
+                                            value="75">Dominica</option><option
+                                            value="76">Dominikanische Republik</option><option
+                                            value="77">Dschibuti</option><option
+                                            value="78">Ecuador</option><option value="79">El Salvador</option><option
+                                            value="80">Eritrea</option><option
+                                            value="81">Falkland-Inseln (Malvinen)</option><option value="82">Färöer-Inseln</option><option
+                                            value="83">Fidschi</option><option
+                                            value="84">Franz. Südpolarterritorien</option><option value="85">Französisch-Guyana</option><option
+                                            value="86">Französisch-Polynesien</option><option
+                                            value="87">Gabun</option><option value="88">Gambia</option><option
+                                            value="89">Georgien</option><option
+                                            value="90">Ghana</option><option value="91">Gibraltar</option><option
+                                            value="92">Grenada</option><option
+                                            value="93">Grönland</option><option value="94">Guadeloupe</option><option
+                                            value="95">Guam</option><option
+                                            value="96">Guatemala</option><option value="97">Guinea</option><option
+                                            value="98">Guinea-Bissau</option><option
+                                            value="99">Guyana</option><option value="100">Haiti</option><option
+                                            value="101">Heard-, MacDonald-Inseln</option><option
+                                            value="102">Honduras</option><option
+                                            value="103">Hongkong</option><option value="104">Indien</option><option
+                                            value="105">Indonesien</option><option
+                                            value="106">Irak</option><option
+                                            value="107">Iran, Islamische Republik</option><option
+                                            value="108">Island</option><option value="109">Israel</option><option
+                                            value="110">Jamaika</option><option
+                                            value="111">Japan</option><option value="112">Jemen</option><option
+                                            value="113">Jordanien</option><option
+                                            value="114">Jungfern-Inseln (UK)</option><option value="115">Jungfern-Inseln (USA)</option><option
+                                            value="116">Kaiman-Inseln</option><option
+                                            value="117">Kambodscha</option><option value="118">Kamerun</option><option
+                                            value="119">Kanada</option><option
+                                            value="120">Kap Verde</option><option value="121">Kasachstan</option><option
+                                            value="122">Katar</option><option
+                                            value="123">Kenia</option><option value="124">Kirgisistan</option><option
+                                            value="125">Kiribati</option><option
+                                            value="126">Kokos-Inseln</option><option value="127">Kolumbien</option><option
+                                            value="128">Komoren</option><option
+                                            value="129">Kongo (Dem. Rep. Kongo)</option><option value="130">Kongo (Rep. Kongo)</option><option
+                                            value="131">Korea, Republik</option><option
+                                            value="132">Kosovo</option><option value="133">Kuba</option><option
+                                            value="134">Kuwait</option><option
+                                            value="135">Laos</option><option value="136">Lesotho</option><option
+                                            value="137">Libanon</option><option
+                                            value="138">Liberia</option><option value="139">Libysch</option><option
+                                            value="140">Liechtenstein</option><option
+                                            value="141">Macao</option><option value="142">Madagaskar</option><option
+                                            value="143">Malawi</option><option
+                                            value="144">Malaysia</option><option value="145">Malediven</option><option
+                                            value="146">Mali</option><option
+                                            value="147">Marokko</option><option value="148">Marshallinseln</option><option
+                                            value="149">Martinique</option><option
+                                            value="150">Mauretanien</option><option value="151">Mauritius</option><option
+                                            value="152">Mayotte</option><option
+                                            value="153">Mazedonien</option><option value="154">Mexiko</option><option
+                                            value="155">Mikronesien</option><option
+                                            value="156">Moldau, Republik</option><option value="157">Monaco</option><option
+                                            value="158">Mongolei</option><option
+                                            value="159">Montenegro</option><option value="160">Montserrat</option><option
+                                            value="161">Mosambik</option><option
+                                            value="162">Myanmar</option><option value="163">Namibia</option><option
+                                            value="164">Nauru</option><option
+                                            value="165">Nepal</option><option value="166">Neukaledonien</option><option
+                                            value="167">Neuseeland</option><option
+                                            value="168">Nicaragua</option><option
+                                            value="169">Niederländische Antillen</option><option
+                                            value="170">Niger</option><option value="171">Nigeria</option><option
+                                            value="172">Niue</option><option
+                                            value="173">Nordkorea</option><option
+                                            value="174">Nordliche Mariannen Insel</option><option value="175">Norfolk-Insel</option><option
+                                            value="176">Norwegen</option><option value="177">Oman</option><option
+                                            value="178">Pakistan</option><option
+                                            value="179">Palästina (besetzte Territorien)</option><option value="180">Palau</option><option
+                                            value="181">Panama</option><option
+                                            value="182">Papua-Neuguinea</option><option value="183">Paraguay</option><option
+                                            value="184">Peru</option><option
+                                            value="185">Philippinen</option><option value="186">Pitcairn-Inseln</option><option
+                                            value="187">Puerto Rico</option><option value="188">Réunion</option><option
+                                            value="189">Ruanda</option><option
+                                            value="190">Russische Förderation</option><option
+                                            value="191">Salomonen</option><option
+                                            value="192">Sambia</option><option value="193">Samoa</option><option
+                                            value="194">San Marino</option><option
+                                            value="195">São Tomé und Príncipe</option><option
+                                            value="196">Saudi-Arabien</option><option
+                                            value="197">Schweiz</option><option value="198">Senegal</option><option
+                                            value="199">Serbien</option><option
+                                            value="200">Seychellen</option><option value="201">Sierra Leone</option><option
+                                            value="202">Simbabwe</option><option
+                                            value="203">Singapur</option><option value="204">Somalia</option><option
+                                            value="205">Sri Lanka</option><option
+                                            value="206">St. Helena</option><option
+                                            value="207">St. Kitts und Nevis</option><option
+                                            value="208">St. Lucia</option><option
+                                            value="209">St. Pierre und Miquelon</option><option
+                                            value="210">St. Vincent</option><option
+                                            value="211">Süd Georgia und Sandw. Inseln</option><option value="212">Südafrika</option><option
+                                            value="213">Sudan</option><option
+                                            value="214">Suriname</option><option
+                                            value="215">Svalbard und Jan Mayen</option><option
+                                            value="216">Swasiland</option><option
+                                            value="217">Syrien, Arabische Republik</option><option value="218">Tadschikistan</option><option
+                                            value="219">Taiwan</option><option value="220">Tansania</option><option
+                                            value="221">Thailand</option><option
+                                            value="222">Timor-Leste</option><option value="223">Togo</option><option
+                                            value="224">Tokelau</option><option
+                                            value="225">Tonga</option><option value="226">Trinidad und Tobago</option><option
+                                            value="227">Tschad</option><option
+                                            value="228">Tunesien</option><option value="229">Türkei</option><option
+                                            value="230">Turkmenistan</option><option
+                                            value="231">Turks-, Caicos-Inseln</option><option
+                                            value="232">Tuvalu</option><option value="233">Übrige Inseln im Pazifik der USA</option><option
+                                            value="234">Uganda</option><option value="235">Ukraine</option><option
+                                            value="236">Uruguay</option><option
+                                            value="237">Usbekistan</option><option value="238">Vanuatu</option><option
+                                            value="239">Vatikanstadt</option><option
+                                            value="240">Venezuela</option><option value="241">Vereinigte Arabische Emirate</option><option
+                                            value="242">Vereinigte Staaten</option><option
+                                            value="243">Vietnam</option><option value="244">Wallis und Futuna</option><option
+                                            value="245">Weihnachtsinsel (AUS)</option><option
+                                            value="246">Weißrussland</option><option value="247">Westsahara</option><option
+                                            value="248">Zentralafrikanische Republik</option></select>
+                                </span>
+                                    </div>
+                                </div>
+                                <div class="b-form__group">
+                                    <div class="b-form__half-col b-form__half-col--first">
+                                <span class="b-form__input">
+                                    <label for="art">Art der Beschäftigung</label>
+                                   <select id="art" class="gwt-ListBox" ng-model="vm.data.antragsteller1.art" convert-to-number><option
+                                           value="-1">Bitte wählen Sie ...</option><option
+                                           value="1">Angestellter</option><option
+                                           value="2">Arbeiter</option><option
+                                           value="3">Arbeitsloser</option><option
+                                           value="4">Beamter</option><option
+                                           value="5">Freiberufler</option><option
+                                           value="6">Hausfrau / Hausmann</option><option
+                                           value="7">Rentner</option><option
+                                           value="8">Selbständigerr</option></select>
+                                </span>
+                                    </div>
+
+                                    <div class="b-form__half-col b-form__half-col--last">
+                                <span class="b-form__input b-form__euro">
+                                    <label for="netto">Einkommen Netto</label>
+                                    <input id="netto" type="text" ng-model="vm.data.antragsteller1.netto">
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="wrap-form">
+                            <h4 class="b-form__sub-header">Antragsteller 2</h4>
+                            <div class="b-form__block">
+                                <div class="b-form__group">
+                                    <div class="b-form__col b-form__inline">
+                                <span class="b-form__radio">
+                                    <input name="sex2" id="herr2" ng-checked="vm.data.antragsteller2.sex == 1" type="radio" ng-click="vm.data.antragsteller2.sex = 1">
+                                    <label for="herr2">Herr</label>
+                                </span>
+                                        <span class="b-form__radio">
+                                    <input name="sex2" id="frau2" ng-checked="vm.data.antragsteller2.sex == 2" type="radio" ng-click="vm.data.antragsteller2.sex = 2">
+                                    <label for="frau2">Frau</label>
+                                </span>
+                                        <span class="b-form__checkbox">
+                                    <input name="prefix" id="prof" type="checkbox"
+                                           ng-model="vm.data.antragsteller2.prof">
+                                    <label for="prof">Prof.</label>
+                                </span>
+                                        <span class="b-form__checkbox">
+                                    <input name="prefix" id="dr" type="checkbox" ng-model="vm.data.antragsteller2.dr">
+                                    <label for="dr">Dr.</label>
+                                </span>
+                                    </div>
+                                    <div class="b-form__half-col b-form__half-col--first">
+                                <span class="b-form__input">
+                                    <label for="first_name">Vorname</label>
+                                    <input id="first_name" type="text" ng-model="vm.data.antragsteller2.first_name">
+                                </span>
+                                        <span class="b-form__phone clearfix">
+                                    <label for="code">Telefon</label>
+                                    <input class="b-form__phone-code" id="code2" type="text"
+                                           ng-model="vm.data.antragsteller2.code">
+                                    <span> - </span>
+                                    <input class="b-form__phone-tel" id="phone2" type="text"
+                                           ng-model="vm.data.antragsteller2.phone">
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="date2">Geburtsdatum</label>
+                                    <input id="date2" type="text" ng-model="vm.data.antragsteller2.date">
+                                </span>
+                                    </div>
+                                    <div class="b-form__half-col b-form__half-col--last">
+                                <span class="b-form__input">
+                                    <label for="second_name2">Nachname</label>
+                                    <input id="second_name2" type="text" ng-model="vm.data.antragsteller2.second_name">
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="email2">E-Mail</label>
+                                    <input id="email2" type="email" ng-model="vm.data.antragsteller2.email">
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="comment2">weitere Kontaktmöglichkeiten</label>
+                                    <textarea id="comment2" ng-model="vm.data.antragsteller2.comment"></textarea>
+                                </span>
+                                    </div>
+                                </div>
+                                <div class="b-form__group b-form__group--same-height">
+                            <span ng-hide="vm.data.antragsteller2.show_address" class="b-form__input">
+                                <label>&nbsp;</label>
+                                <div class="btn btn--light" ng-click="vm.customAddress()">Abweichende Anschrift erfassen</div>
+                            </span>
+                                <div ng-show="vm.data.antragsteller2.show_address" class="b-form__group b-form__group--same-height" style="border-bottom: none;">
+                                    <div class="b-form__half-col b-form__half-col--first">
+                                <span class="b-form__address clearfix">
+                                    <span class="b-form__input b-form__address-long">
+                                        <label for="street_name">Straße</label>
+                                        <input id="street_name" type="text"
+                                               ng-model="vm.data.antragsteller2.street_name">
+                                    </span>
+                                    <span class="b-form__input b-form__address-short">
+                                        <label for="street_numb">Nr.</label>
+                                        <input id="street_numb" type="text"
+                                               ng-model="vm.data.antragsteller2.street_numb">
+                                    </span>
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="seit">Wohnhaft seit</label>
+                                    <input id="seit" type="text" ng-model="vm.data.antragsteller2.seit">
+                                </span>
+                                    </div>
+                                    <div class="b-form__half-col b-form__half-col--last">
+                                <span class="b-form__address clearfix">
+                                    <span class="b-form__input b-form__address-short">
+                                        <label for="plz">PLZ</label>
+                                        <input id="plz" type="text" ng-model="vm.data.antragsteller2.plz">
+                                    </span>
+                                    <span class="b-form__input b-form__address-long">
+                                        <label for="ort">Ort</label>
+                                        <input id="ort" type="text" ng-model="vm.data.antragsteller2.ort">
+                                    </span>
+                                </span>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="b-form__group">
+                                    <div class="b-form__half-col b-form__half-col--first">
+                                <span class="b-form__input">
+                                    <label for="famili">Familienstand</label>
+                                    <select id="famili" ng-model="vm.data.antragsteller2.famili" convert-to-number>
+                                        <option value="-1" selected="selected">Bitte wählen Sie ...</option><option
+                                            value="1">Verheiratet</option><option value="2">Ledig</option><option
+                                            value="3">Getrennt lebend</option><option value="4">Geschieden</option><option
+                                            value="5">Lebenspartnerschaft</option><option
+                                            value="6">Verwitwet</option></select>
+                                </span>
+                                        <span class="b-form__input">
+                                    <label for="country">Staatsangehörigkeit</label>
+                                    <select id="country" class="gwt-ListBox" ng-model="vm.data.antragsteller2.country" convert-to-number>
+                                        <option value="-1" selected="selected">Bitte wählen Sie ...</option><option
+                                            value="10">Deutschland</option><option
+                                            value="13">Frankreich</option><option value="22">Niederlande</option><option
+                                            value="197">Schweiz</option><option
+                                            value="229">Türkei</option><option
+                                            value="33">Großbritannien und Nordirland</option><option value="-2">─────────────────────────</option><option
+                                            value="-3">EU-Länder</option><option value="7">Belgien</option><option
+                                            value="8">Bulgarien</option><option
+                                            value="9">Dänemark</option><option value="10">Deutschland</option><option
+                                            value="11">Estland</option><option
+                                            value="12">Finnland</option><option value="13">Frankreich</option><option
+                                            value="14">Griechenland</option><option
+                                            value="15">Irland</option><option value="16">Italien</option><option
+                                            value="17">Kroatien</option><option
+                                            value="18">Lettland</option><option value="19">Litauen</option><option
+                                            value="20">Luxemburg</option><option
+                                            value="21">Malta</option><option value="22">Niederlande</option><option
+                                            value="23">Österreich</option><option
+                                            value="24">Polen</option><option value="25">Portugal</option><option
+                                            value="26">Rumänien</option><option
+                                            value="27">Schweden</option><option value="28">Slowakei</option><option
+                                            value="29">Slowenien</option><option
+                                            value="30">Spanien</option><option value="31">Tschechische Republik</option><option
+                                            value="32">Ungarn</option><option
+                                            value="33">Großbritannien und Nordirland</option><option
+                                            value="34">Zypern</option><option
+                                            value="-2">─────────────────────────</option><option
+                                            value="-3">Nicht-EU-Länder</option><option value="35">Afghanistan</option><option
+                                            value="36">Ägypten Arabische Republik</option><option
+                                            value="37">Åland</option><option value="38">Albanien</option><option
+                                            value="39">Algerien</option><option
+                                            value="40">Amerikanisch-Samoa</option><option
+                                            value="41">Andorra Fürstentum</option><option
+                                            value="42">Angola</option><option value="43">Anguilla</option><option
+                                            value="44">Antarktis</option><option
+                                            value="45">Antigua und Barbuda</option><option value="46">Äquatorialguinea Republik</option><option
+                                            value="47">Argentinien</option><option
+                                            value="48">Armenien</option><option value="49">Aruba</option><option
+                                            value="50">Aserbaidschan</option><option
+                                            value="51">Äthiopien</option><option value="52">Australien</option><option
+                                            value="53">Bahamas</option><option
+                                            value="54">Bahrain</option><option value="55">Bangladesch</option><option
+                                            value="56">Barbados</option><option
+                                            value="57">Belize</option><option value="58">Benin</option><option
+                                            value="59">Bermuda-Inseln</option><option
+                                            value="60">Bhutan</option><option value="61">Bolivien</option><option
+                                            value="62">Bosnien und Herzegowina</option><option
+                                            value="63">Botsuana</option><option
+                                            value="64">Bouvet-Insel</option><option value="65">Brasilien</option><option
+                                            value="66">Britische Territorien im Indischen Ozean</option><option
+                                            value="67">Brunei Darussalam</option><option
+                                            value="68">Burkina Faso</option><option value="69">Burundi</option><option
+                                            value="70">Chile</option><option value="71">China</option><option
+                                            value="72">Cookinseln</option><option
+                                            value="73">Costa Rica</option><option value="74">Côte d'Ivoire </option><option
+                                            value="75">Dominica</option><option
+                                            value="76">Dominikanische Republik</option><option
+                                            value="77">Dschibuti</option><option
+                                            value="78">Ecuador</option><option value="79">El Salvador</option><option
+                                            value="80">Eritrea</option><option
+                                            value="81">Falkland-Inseln (Malvinen)</option><option value="82">Färöer-Inseln</option><option
+                                            value="83">Fidschi</option><option
+                                            value="84">Franz. Südpolarterritorien</option><option value="85">Französisch-Guyana</option><option
+                                            value="86">Französisch-Polynesien</option><option
+                                            value="87">Gabun</option><option value="88">Gambia</option><option
+                                            value="89">Georgien</option><option
+                                            value="90">Ghana</option><option value="91">Gibraltar</option><option
+                                            value="92">Grenada</option><option
+                                            value="93">Grönland</option><option value="94">Guadeloupe</option><option
+                                            value="95">Guam</option><option
+                                            value="96">Guatemala</option><option value="97">Guinea</option><option
+                                            value="98">Guinea-Bissau</option><option
+                                            value="99">Guyana</option><option value="100">Haiti</option><option
+                                            value="101">Heard-, MacDonald-Inseln</option><option
+                                            value="102">Honduras</option><option
+                                            value="103">Hongkong</option><option value="104">Indien</option><option
+                                            value="105">Indonesien</option><option
+                                            value="106">Irak</option><option
+                                            value="107">Iran, Islamische Republik</option><option
+                                            value="108">Island</option><option value="109">Israel</option><option
+                                            value="110">Jamaika</option><option
+                                            value="111">Japan</option><option value="112">Jemen</option><option
+                                            value="113">Jordanien</option><option
+                                            value="114">Jungfern-Inseln (UK)</option><option value="115">Jungfern-Inseln (USA)</option><option
+                                            value="116">Kaiman-Inseln</option><option
+                                            value="117">Kambodscha</option><option value="118">Kamerun</option><option
+                                            value="119">Kanada</option><option
+                                            value="120">Kap Verde</option><option value="121">Kasachstan</option><option
+                                            value="122">Katar</option><option
+                                            value="123">Kenia</option><option value="124">Kirgisistan</option><option
+                                            value="125">Kiribati</option><option
+                                            value="126">Kokos-Inseln</option><option value="127">Kolumbien</option><option
+                                            value="128">Komoren</option><option
+                                            value="129">Kongo (Dem. Rep. Kongo)</option><option value="130">Kongo (Rep. Kongo)</option><option
+                                            value="131">Korea, Republik</option><option
+                                            value="132">Kosovo</option><option value="133">Kuba</option><option
+                                            value="134">Kuwait</option><option
+                                            value="135">Laos</option><option value="136">Lesotho</option><option
+                                            value="137">Libanon</option><option
+                                            value="138">Liberia</option><option value="139">Libysch</option><option
+                                            value="140">Liechtenstein</option><option
+                                            value="141">Macao</option><option value="142">Madagaskar</option><option
+                                            value="143">Malawi</option><option
+                                            value="144">Malaysia</option><option value="145">Malediven</option><option
+                                            value="146">Mali</option><option
+                                            value="147">Marokko</option><option value="148">Marshallinseln</option><option
+                                            value="149">Martinique</option><option
+                                            value="150">Mauretanien</option><option value="151">Mauritius</option><option
+                                            value="152">Mayotte</option><option
+                                            value="153">Mazedonien</option><option value="154">Mexiko</option><option
+                                            value="155">Mikronesien</option><option
+                                            value="156">Moldau, Republik</option><option value="157">Monaco</option><option
+                                            value="158">Mongolei</option><option
+                                            value="159">Montenegro</option><option value="160">Montserrat</option><option
+                                            value="161">Mosambik</option><option
+                                            value="162">Myanmar</option><option value="163">Namibia</option><option
+                                            value="164">Nauru</option><option
+                                            value="165">Nepal</option><option value="166">Neukaledonien</option><option
+                                            value="167">Neuseeland</option><option
+                                            value="168">Nicaragua</option><option
+                                            value="169">Niederländische Antillen</option><option
+                                            value="170">Niger</option><option value="171">Nigeria</option><option
+                                            value="172">Niue</option><option
+                                            value="173">Nordkorea</option><option
+                                            value="174">Nordliche Mariannen Insel</option><option value="175">Norfolk-Insel</option><option
+                                            value="176">Norwegen</option><option value="177">Oman</option><option
+                                            value="178">Pakistan</option><option
+                                            value="179">Palästina (besetzte Territorien)</option><option value="180">Palau</option><option
+                                            value="181">Panama</option><option
+                                            value="182">Papua-Neuguinea</option><option value="183">Paraguay</option><option
+                                            value="184">Peru</option><option
+                                            value="185">Philippinen</option><option value="186">Pitcairn-Inseln</option><option
+                                            value="187">Puerto Rico</option><option value="188">Réunion</option><option
+                                            value="189">Ruanda</option><option
+                                            value="190">Russische Förderation</option><option
+                                            value="191">Salomonen</option><option
+                                            value="192">Sambia</option><option value="193">Samoa</option><option
+                                            value="194">San Marino</option><option
+                                            value="195">São Tomé und Príncipe</option><option
+                                            value="196">Saudi-Arabien</option><option
+                                            value="197">Schweiz</option><option value="198">Senegal</option><option
+                                            value="199">Serbien</option><option
+                                            value="200">Seychellen</option><option value="201">Sierra Leone</option><option
+                                            value="202">Simbabwe</option><option
+                                            value="203">Singapur</option><option value="204">Somalia</option><option
+                                            value="205">Sri Lanka</option><option
+                                            value="206">St. Helena</option><option
+                                            value="207">St. Kitts und Nevis</option><option
+                                            value="208">St. Lucia</option><option
+                                            value="209">St. Pierre und Miquelon</option><option
+                                            value="210">St. Vincent</option><option
+                                            value="211">Süd Georgia und Sandw. Inseln</option><option value="212">Südafrika</option><option
+                                            value="213">Sudan</option><option
+                                            value="214">Suriname</option><option
+                                            value="215">Svalbard und Jan Mayen</option><option
+                                            value="216">Swasiland</option><option
+                                            value="217">Syrien, Arabische Republik</option><option value="218">Tadschikistan</option><option
+                                            value="219">Taiwan</option><option value="220">Tansania</option><option
+                                            value="221">Thailand</option><option
+                                            value="222">Timor-Leste</option><option value="223">Togo</option><option
+                                            value="224">Tokelau</option><option
+                                            value="225">Tonga</option><option value="226">Trinidad und Tobago</option><option
+                                            value="227">Tschad</option><option
+                                            value="228">Tunesien</option><option value="229">Türkei</option><option
+                                            value="230">Turkmenistan</option><option
+                                            value="231">Turks-, Caicos-Inseln</option><option
+                                            value="232">Tuvalu</option><option value="233">Übrige Inseln im Pazifik der USA</option><option
+                                            value="234">Uganda</option><option value="235">Ukraine</option><option
+                                            value="236">Uruguay</option><option
+                                            value="237">Usbekistan</option><option value="238">Vanuatu</option><option
+                                            value="239">Vatikanstadt</option><option
+                                            value="240">Venezuela</option><option value="241">Vereinigte Arabische Emirate</option><option
+                                            value="242">Vereinigte Staaten</option><option
+                                            value="243">Vietnam</option><option value="244">Wallis und Futuna</option><option
+                                            value="245">Weihnachtsinsel (AUS)</option><option
+                                            value="246">Weißrussland</option><option value="247">Westsahara</option><option
+                                            value="248">Zentralafrikanische Republik</option></select>
+                                </span>
+                                    </div>
+                                </div>
+                                <div class="b-form__group">
+                                    <div class="b-form__half-col b-form__half-col--first">
+                                <span class="b-form__input">
+                                    <label for="art">Art der Beschäftigung</label>
+                                   <select id="art" class="gwt-ListBox" ng-model="vm.data.antragsteller2.art" convert-to-number><option
+                                           value="-1" selected="selected">Bitte wählen Sie ...</option><option
+                                           value="1">Angestellter</option><option value="2">Arbeiter</option><option
+                                           value="3">Arbeitsloser</option><option value="4">Beamter</option><option
+                                           value="5">Freiberufler</option><option value="6">Hausfrau / Hausmann</option><option
+                                           value="7">Rentner</option><option value="8">Selbständiger</option></select>
+                                </span>
+                                    </div>
+
+                                    <div class="b-form__half-col b-form__half-col--last">
+                                <span class="b-form__input b-form__euro">
+                                    <label for="netto">Einkommen Netto</label>
+                                    <input id="netto" type="text" ng-model="vm.data.antragsteller2.netto">
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="second_form clearfix">
+                    <h4 class="b-form__sub-header">Kinder: <span>Leben Kinder im Haushalt?</span></h4>
+                    <div class="b-form__title-btn b-form__title">
+                        <div class="b-form__list-view-item">
+                            <span class="kinder" ng-click="vm.addKinder()">
+                                <img class="btn btn__plus btn--light"
+                                     src="content/images/icons/plus.png"
+                                     alt="plus_btn">
+                                Kind erfassen
+                            </span>
+                        </div>
+                        <div class="b-form__right-list">
+                            <div class="btn btn--light" ng-click="vm.kinderStatus(true)">Keine Kinder vorhanden</div>
+                        </div>
+                    </div>
+                    <div class="b-form__block" ng-repeat="item in vm.kinder track by $index">
+                        <div class="b-form__group b-form__child" >
+                            <span class="b-form__input b-form__child-item">
+                                <label for="name">Name</label>
+                                <input id="name" ng-model="item.name" type="text">
+                            </span>
+                            <span class="b-form__input b-form__child-item">
+                                <label for="birthday2">Geburtsdatum</label>
+                                <input id="birthday2" ng-model="item.geburtsdatum" type="text">
+                            </span>
+                            <div class="b-form__child-item">
+                                <h4>Kindergeld?</h4>
+                                <span class="b-form__radio">
+                                    <input ng-model="item.FamilyChildrenKindergeId" value="1" id="ja2" type="radio">
+                                    <label for="ja2">Ja</label>
+                                </span>
+                                <span class="b-form__radio">
+                                    <input ng-model="item.FamilyChildrenKindergeId" value="0" id="nein" type="radio">
+                                    <label for="nein">Nein</label>
+                                </span>
+                            </div>
+                            <div class="b-form__child-item">
+                                <h4>Unterhaltseinnahmen?</h4>
+                                <span class="b-form__radio">
+                                    <input ng-model="item.unterhaltseinnahmen" value="0" id="keine" type="radio">
+                                    <label for="keine">keine</label>
+                                </span>
+                                <span class="b-form__radio">
+                                    <input ng-model="item.unterhaltseinnahmen" value="1" id="ja" type="radio">
+                                    <label for="ja">ja</label>
+                                </span>
+                            </div>
+                            <div class="b-buy__item b-buy__options">
+                                <span class="b-form__input">
+                                    <label for="first_name">&nbsp;</label>
+                                    <img src="content/images/icons/trash_basket.png"
+                                         class="btn btn__trash btn--light"
+                                         ng-click="vm.removeKinder($index)">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="third_form clearfix">
+                    <div class="b-form__title-dark b-form__title">Finanzielle Situation</div>
+                    <h4 class="b-form__sub-header">Vermögen, Einnahmen, Ausgaben, Verbindlichkeiten</h4>
+                    <div class="b-form__list-view clearfix">
+                        <ul class="b-form__half-col">
+                            <li class="b-form__list-view-item"
+                                ng-repeat="item in vm.menu track by $index"
+                                ng-class="vm.itemIsFilled(item) ? 'terminated-items' : ''">
+                                <a ng-click="vm.addItem(item, $index)">
+                                    <!--<div style="width: 14px; height: 13px; display: inline-block; position: relative;" ng-show="vm.itemIsFilled(item)"></div>-->
+                                    <img class="btn btn__plus btn--light"
+                                         ng-show="!vm.itemIsFilled(item)"
+                                         src="content/images/icons/plus.png"
+                                         alt="plus_btn">
+                                    <img class="btn btn__plus btn--light"
+                                         ng-show="vm.itemIsFilled(item)"
+                                         src="content/images/icons/plus.png"
+                                         style="visibility: hidden;"
+                                         alt="plus_btn">
+                                    {{item.name}}
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="b-form__half-col">
+                            <li class="b-form__list-view-item"
+                                ng-repeat="item in vm.menu2"
+                                ng-class="vm.itemIsFilled(item) ? 'terminated-items' : ''">
+                                <a ng-click="vm.addItem(item)">
+                                    <!--<div style="width: 14px; height: 13px; display: inline-block; position: relative;" ng-show="vm.itemIsFilled(item)"></div>-->
+                                    <img class="btn btn__plus btn--light"
+                                         ng-show="!vm.itemIsFilled(item)"
+                                         src="content/images/icons/plus.png"
+                                         alt="plus_btn">
+                                    <img class="btn btn__plus btn--light"
+                                         ng-show="vm.itemIsFilled(item)"
+                                         src="content/images/icons/plus.png"
+                                         style="visibility: hidden;"
+                                         alt="plus_btn">
+                                    {{item.name}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="b-form__blocks-separator">
+                        <ul class="b-form__block b-form__list banks-left">
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[0].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Bank- und Sparguthaben
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Guthaben</label>
+                                        <input id="first_name" type="text" ng-model="item.githaben">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Zinsertrag</label>
+                                        <input id="first_name" type="text" ng-model="item.zinsertrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[0], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[2].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Bausparvertrag
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Angesparter Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.angesparter_betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Sparbeitrag</label>
+                                        <input id="first_name" type="text" ng-model="item.sparbeitrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[2], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[4].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Sparpläne
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Aktueller Wert</label>
+                                        <input id="first_name" type="text" ng-model="item.aktueller_wert">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Beitrag</label>
+                                        <input id="first_name" type="text" ng-model="item.beitrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[4], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[6].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Einkünfte aus Nebentätigkeit
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input">
+                                        <label for="first_name">Nebentätigkeit</label>
+                                        <input id="first_name" type="text" ng-model="item.beginn_nebentaetigkeit">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[6], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[8].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Ehegattenunterhalt
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin"></div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[8], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[10].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Sonstige Einnahmen
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin"></div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[10], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[1].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Wertpapiere / Aktien
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Marktwert</label>
+                                        <input id="first_name" type="text" ng-model="item.marktwert">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Dividenden</label>
+                                        <input id="first_name" type="text" ng-model="item.dividenden">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[1], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[3].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Lebens-/ Rentenversicherung
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Rückkaufswert</label>
+                                        <input id="first_name" type="text" ng-model="item.ruckkaufswert">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Prämie</label>
+                                        <input id="first_name" type="text" ng-model="item.pramie">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[3], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[5].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Sonstiges Vermögen
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                        <span class="b-form__input b-form__euro">
+                                            <label for="first_name">Aktueller Wert</label>
+                                            <input id="first_name" type="text" ng-model="item.aktueller_wert">
+                                        </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin"></div>
+                                    <div class="b-buy__item b-buy__options">
+                                         <span class="b-form__input">
+                                            <label for="first_name">&nbsp;</label>
+                                            <img src="content/images/icons/trash_basket.png"
+                                                 class="btn btn__trash btn--light"
+                                                 ng-click="vm.removeItem(vm.menu[5], item)">
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[7].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Unbefristete Zusatzrente
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin"></div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[7], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu[9].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Variable Einkünfte
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin"></div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu[9], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="b-form__block b-form__list banks-right">
+
+                            <!--Mietausgaben-->
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu2[0].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Mietausgaben
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                 <span class="b-buy__checkbox clearfix">
+                                    <input name="prefix" id="dr" type="checkbox" ng-model="item.entfallen_finanzierung">
+                                    <label for="dr">Entfallen mit Finanzierung</label>
+                                </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu2[0], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu2[1].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Unterhaltsverpflichtungen
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin"></div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu2[1], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu2[2].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Private Krankenversicherung
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin"></div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu2[2], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu2[3].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Sonstige Ausgaben
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin"></div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu2[3], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu2[4].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Sonstige Versicherungsausgaben
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Betrag</label>
+                                        <input id="first_name" type="text" ng-model="item.betrag">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu2[4], item)">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu2[5].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Ratenkredit / Leasing
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Rate</label>
+                                        <input id="first_name" type="text" ng-model="item.rate">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input">
+                                        <label for="first_name">Gläubiger</label>
+                                        <input id="first_name" type="text" ng-model="item.glaubiger">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu2[5], item)">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__name"></div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Aktuelle Restschuld</label>
+                                        <input id="first_name" type="text" ng-model="item.aktuelle_restschuld">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input">
+                                        <label for="first_name">Laufzeitende</label>
+                                        <input id="first_name" type="text" ng-model="item.laufzeitende">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu2[6].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Privates Darlehen
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Rate</label>
+                                        <input id="first_name" type="text" ng-model="item.rate">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input">
+                                        <label for="first_name">Gläubiger</label>
+                                        <input id="first_name" type="text" ng-model="item.glaubiger">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu2[6], item)">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__name"></div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Aktuelle Restschuld</label>
+                                        <input id="first_name" type="text" ng-model="item.aktuelle_restschuld">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input">
+                                        <label for="first_name">Laufzeitende</label>
+                                        <input id="first_name" type="text" ng-model="item.laufzeitende">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="b-form__list-item"
+                                ng-repeat="item in vm.menu2[7].items track by $index">
+                                <div class="b-form__group b-buy">
+                                    <div class="b-buy__item b-buy__name">
+                                        Sonstige Verbindlichkeiten
+                                    </div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Rate</label>
+                                        <input id="first_name" type="text" ng-model="item.rate">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input">
+                                        <label for="first_name">Gläubiger</label>
+                                        <input id="first_name" type="text" ng-model="item.glaubiger">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__options">
+                                     <span class="b-form__input">
+                                        <label for="first_name">&nbsp;</label>
+                                        
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             ng-click="vm.removeItem(vm.menu2[7], item)">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__name"></div>
+                                    <div class="b-buy__item b-buy__bet">
+                                    <span class="b-form__input b-form__euro">
+                                        <label for="first_name">Aktuelle Restschuld</label>
+                                        <input id="first_name" type="text" ng-model="item.aktuelle_restschuld">
+                                    </span>
+                                    </div>
+                                    <div class="b-buy__item b-buy__begin">
+                                    <span class="b-form__input">
+                                        <label for="first_name">Laufzeitende</label>
+                                        <input id="first_name" type="text" ng-model="item.laufzeitende">
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="second_form clearfix">
+                    <h4 class="b-form__sub-header">Weitere Immobilien: <span>Sind weitere Immobilien vorhanden?</span>
+                    </h4>
+                    <div class="b-form__title-btn b-form__title">
+                        <div class="btn btn--light">Keine immobilien vorhanden</div>
+                    </div>
+                </div>
+
+                <div class="second_form clearfix">
+                    <h4 class="b-form__sub-header bankverbindung">
+                        <img class="btn btn__plus btn--light"
+                            src="content/images/icons/plus.png"
+                            ng-click="vm.addBank()"
+                            alt="plus_btn"> Bankverbindung</h4>
+                    <div class="b-form__block b-banking clearfix" ng-repeat="bank in vm.data.bankverbindung track by $index">
+                        <div class="b-banking__item b-banking__kont">
+                            <span class="b-form__input">
+                                <label for="kont">Kontoinhaber</label>
+                                <select id="kont" ng-model="bank.kont">
+                                    <option ng-selected="{{bank.kont === -1}}" value="-1">Bitte wählen Sie ...</option>
+                                    <option ng-selected="{{bank.kont === 1}}" value="1">Antragsteller 1</option>
+                                    <option ng-selected="{{bank.kont === 2}}" value="2">Antragsteller 2</option>
+                                    <option ng-selected="{{bank.kont === 3}}" value="3">beide Antragsteller</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="b-banking__item b-banking__iban">
+                            <span class="b-form__input">
+                                <label for="iban">IBAN</label>
+                                <input id="iban" type="text" ng-model="bank.iban">
+                            </span>
+                        </div>
+                        <div class="b-banking__item b-banking__bic">
+                            <span class="b-form__input">
+                                <label for="bic">BIC</label>
+                                <input id="bic" type="text" ng-model="bank.bic">
+                            </span>
+                        </div>
+                        <div class="b-banking__item b-banking__num">
+                            <span class="b-form__input">
+                                <label for="num">Konto-Nr.</label>
+                                <input id="num" type="text" ng-model="bank.num">
+                            </span>
+                        </div>
+                        <div class="b-banking__item b-banking__blz">
+                            <span class="b-form__input">
+                                <label for="blz">BLZ</label>
+                                <input id="blz" type="text" ng-model="bank.blz">
+                            </span>
+                        </div>
+                        <div class="b-banking__item b-banking__kredit">
+                            <span class="b-form__input">
+                                <label for="cred_inst">Kreditinstitut</label>
+                                <input id="cred_inst" type="text" ng-model="bank.cred_inst">
+                            </span>
+                        </div>
+                        <img src="content/images/icons/trash_basket.png"
+                            class="btn btn__trash btn--light bank-delete"
+                            ng-click="vm.deleteBank($index)">
+                    </div>
+                </div>
+
+                <div class="b-form__title-light b-form__title">Zusatzangaben</div>
+
+            </div>
+        </div>
+        <div class="b-tabs submit-area">
+            <ul class="b-tabs__titles clearfix">
+                <li class="b-tabs__custom-item b-tabs__custom-item--right">
+                    <button class="btn btn__dark" ng-click="vm.submit()">
+                        Submit
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="b-footer">
+        <div class="container">
+            <ul class="b-footer__nav clearfix">
+                <li class="b-footer__nav-item b-footer__nav-user">Vorgang: {{vm.params_id}}</li>
+            </ul>
+        </div>
+    </div>
+</footer>

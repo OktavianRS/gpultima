@@ -1,0 +1,54 @@
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  font-weight: normal;
+  font-size: 12px;
+  box-sizing: border-box;
+  -webkit-transition: all 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+  border-radius: 2px;
+  white-space: nowrap;
+  padding: 2px 8px;
+  height: 21px;
+  line-height: 16px;
+  background: url($imagePath + "icons/btn_bg.png") repeat-x;
+  border: 1px solid #c0c2c6;
+  color: #154882;
+  &--img {
+    padding-left: 22px;
+    img {
+      position: absolute;
+      top: 1px;
+      left: 4px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+  &__plus {
+    padding: 0;
+    height: 13px;
+    width: 14px;
+  }
+  &__dark {
+    color: #fff;
+    background: url($imagePath + "icons/btn_dark.png") repeat-x;
+    &:hover {
+      border-color: #044882;
+      box-shadow: 0 0 2px 1px #9cbad7;
+    }
+  }
+  &__trash,
+  &__descr {
+    height: 20px;
+    width: 20px;
+    padding: 0;
+  }
+  &--light {
+    &:hover {
+      border-color: #8db0cf !important;
+      box-shadow: 0 0 2px 1px #9cbad7;
+    }
+  }
+}

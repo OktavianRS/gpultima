@@ -1,0 +1,115 @@
+<header class="b-header">
+    <div class="container clearfix">
+        <nav class="b-header__main-nav" role="navigation">
+            <ul class="b-header__nav clearfix">
+                <li class="b-header__nav-item">
+                    <a ui-sref="dashboard">Übersicht</a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="b-header__links-nav" role="navigation">
+            <ul class="b-header__nav clearfix">
+                <li class="b-header__nav-item b-header__links-search">
+                    <a class="search" ng-click='toggleModal()'></a>
+                </li>
+                <li class="b-header__nav-item">
+                    <a href="#">Schließen</a>
+                </li>
+                <li class="b-header__nav-item b-header__links-user">
+                    <a href="#"></a>
+                </li>
+            </ul>
+        </nav>
+        <div class="b-header__logo clearfix">
+            <a ui-sref="dashboard" class="b-header__logo-link">
+                <img class="b-header__logo-image" src="content/images/logo.png" alt="Ultima">
+            </a>
+        </div>
+    </div>
+    <modal-dialog show='modalShown' height='90%'>
+        <div class="search-block">
+            <form action="" method="get">
+                <div class="b-form__search">
+                    <img src="content/images/icons/search.png" alt="search">
+                    <input type="text" ng-model="searchText" placeholder="Vorgänge suchen (Name, Vorgangsnummer, Telefonnummer, E-Mail, Anschrift ...)">
+                </div>
+            </form>
+            <div class="b-form__results">
+                <table class="b-form__results-table">
+                    <thead>
+                    <tr>
+                        <th class="first">Vorgans-nummer</th>
+                        <th>Name Antragsteller</th>
+                        <th>Anschrift Immobilie</th>
+                        <th>Kundenbetreuer</th>
+                        <th>Bearbeiter</th>
+                        <th>Letztes Ereignis</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.users | filter:searchText">
+                        <td class="column-number-op first">
+                            <img src="content/images/icons/singl_home.png" alt="">
+                            <span class="number-op">{{item.id}}</span>
+                        </td>
+                        <td><p>{{item.nameW}}</p><p>{{item.nameH}}</p></td>
+                        <td>{{item.addres}}</td>
+                        <td class="manager">
+                            <img src="content/images/icons/user.png" alt="">
+                            <p>{{item.manager}}</p>
+                            <p>Ultima GmbH</p>
+                        </td>
+                        <td class="manager">
+                            <img src="content/images/icons/user.png" alt="">
+                            <div>
+                                <p>{{item.addres}}</p>
+                                <p class="company">Ultima GmbH</p>
+                            </div>
+                        </td>
+                        <td>{{item.event}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </modal-dialog>
+
+</header>
+<main class="b-main">
+    <div class="container">
+        <div class="b-tabs">
+            <ul class="b-tabs__titles clearfix">
+                <li class="b-tabs__titles-item b-tabs__big-user"><span>benutzerverwaltung</span></li>
+            </ul>
+            <div class="b-tabs__container">
+                <div class="b-form__title-dark b-form__title">
+                    Persönliche Daten
+                </div>
+                <div>
+                    <form class="new-user">
+                        <div class="b-banking__item b-banking__blz no-float">
+                            <span class="b-form__input">
+                                <label for="username">Benutzername</label>
+                                <input id="username" type="text">
+                            </span>
+                            <span class="b-form__input">
+                                <label for="password">Kennwort</label>
+                                <input id="password" type="password">
+                            </span>
+                            <button type="submit">Schaffen</button>
+                        </div>
+                    </form>
+                    <div class="label">Benutzer:</div>
+                    <div class="users-container">
+                        <div class="user">
+                            <span class="username">Hansparet</span>
+                            <span class="password-label">passwort initiazel</span>
+                            <input type="text">
+                            <input type="checkbox">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

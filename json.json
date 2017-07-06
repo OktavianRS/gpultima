@@ -1,0 +1,72 @@
+{
+  'id': '2',
+  'basisangaben': {
+    'bankverbindung': 'Neubau (eigenes Bauvorhaben)',
+    'strabe': '1',
+    'nr': '1',
+    'plz': '1',
+    'ort': '1',
+    'art': 'Reihenhaus',
+    'einliegerwohnung': '0',
+    'vollgeschosse': '1',
+    'fertighaus': '0',
+    'dachgeschoss': 'Teilweise ausgebaut',
+    'grundstucksgrobe': '1',
+    'baujahr': '1',
+    'bauweise': 'andere',
+    'keller': 'Teilunterkellert'
+  },
+  'nutzung': {
+    'gesamtewohnflache': '1',
+    'wohnflache': 'Vermietet',
+    'gewerbeflache': '0'
+  },
+  'zusatzliche': {
+    'erbbaurecht': '0',
+    'objekt': '0'
+  },
+  'stellplatze': [
+    {
+      'Stellplatz': [
+        {
+          'vermietet': '0'
+        }
+      ]
+    },
+    {
+      'Carport': [
+        {
+          'vermietet': '0'
+        }
+      ]
+    },
+    {
+      'Garage': [
+        {
+          'vermietet': '0'
+        }
+      ]
+    },
+    {
+      'Doppelgarage': [
+        {
+          'vermietet': '0'
+        }
+      ]
+    },
+    {
+      'Kellergarage': [
+        {
+          'vermietet': '0'
+        }
+      ]
+    },
+    {
+      'Tiefgaragenstellplatz': [
+        {
+          'vermietet': '0'
+        }
+      ]
+    }
+  ]
+}

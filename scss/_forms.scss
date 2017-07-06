@@ -1,0 +1,635 @@
+$bottomPad: 10px;
+
+.b-form {
+  &__sub-header {
+    padding: 4px 0;
+    height: 15px;
+    font-weight: bold;
+    font-size: 12px;
+    span {
+      font-weight: normal;
+    }
+  }
+  &__title {
+    height: 23px;
+    cursor: pointer;
+    padding-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 8px;
+    margin-bottom: 6px;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+    &-dark {
+      background: url($imagePath + "icons/form_title.png") repeat-x;
+      box-shadow: 0 1px 2px -1px #666;
+      border: 1px solid #849ebd;
+      color: #fff;
+    }
+    &-light {
+      background: url($imagePath + "icons/light_bg.png") repeat-x;
+      border: 1px solid #d0daed;
+      text-shadow: 1px 1px 1px white;
+    }
+    &-btn {
+      border: 1px solid #d9d9d7;
+      padding: 4px 8px;
+      background: #f9faf3;
+    }
+  }
+  &__list-view {
+    border: 1px solid #d9d9d7;
+    position: relative;
+    padding: 10px 0;
+    background: #f9faf3;
+    &-item {
+      display: inline-block;
+      width: 50%;
+      img {
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+      a {
+        display: block;
+        padding: 0 12px 0;
+        margin-bottom: 3px;
+      }
+      span{
+        padding: 0 11px;
+      }
+    }
+
+    &--horizontal {
+      & .b-form__list-view-item {
+        display: inline-block;
+        width: auto;
+      }
+    }
+  }
+  &__block {
+    background: rgb(237, 237, 234);
+    padding: 6px 8px 12px;
+    border: 1px solid #d9d9d7;
+    border-bottom: none;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+  }
+  &__left-list{
+    width: 50%;
+    float: left;
+    border-right: none;
+  }
+  &__right-list{
+    width: 50%;
+    float: right;
+    border-left: none;
+  }
+  &__group {
+    padding: 0 4px;
+    box-sizing: border-box;
+    margin: 0 -4px 4px;
+
+    padding: 6px 8px 12px;
+    border: 1px solid #d9d9d7;
+    &--same-height {
+      min-height: 92px;
+    }
+    &--same-height70 {
+      min-height: 70px;
+    }
+    &::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+  &__child{
+    &-item{
+      float: left;
+      margin-right: 10px;
+      .b-form__radio{
+        display: inline-block;
+      }
+      h4{
+        color: #8e8e8e;
+        font-size: 11px;
+      }
+    }
+    .b-buy__options{
+      float: right;
+    }
+  }
+
+  &__address {
+    span {
+      &:first-child {
+        margin-right: 4%;
+      }
+    }
+    &-long,
+    &-short {
+      float: left;
+    }
+    &-long {
+      width: 76%;
+    }
+    &-short {
+      width: 20%;
+    }
+  }
+  &__radio-label {
+    & > label {
+      color: #8e8e8e;
+      display: block;
+      font-size: 11px;
+      white-space: nowrap;
+      padding-left: 1px;
+      margin-bottom: 2px;
+      height: 13px;
+    }
+  }
+  &__radio,
+  &__checkbox {
+    padding-right: 8px;
+    padding-bottom: $bottomPad;
+    display: block;
+  }
+  &__input,
+  &__phone {
+    display: block;
+    padding-bottom: $bottomPad;
+    label {
+      color: #8e8e8e;
+      display: block;
+      font-size: 11px;
+      white-space: nowrap;
+      padding-left: 1px;
+      margin-bottom: 2px;
+      height: 13px;
+    }
+    input,
+    textarea,
+    select {
+      padding-left: 1px;
+      padding-right: 1px;
+      padding-top: 2px;
+      background-color: white;
+      border: 1px solid #d9d9d7;
+      width: 100%;
+    }
+    input {
+      height: 20px;
+    }
+    textarea {
+      resize: vertical;
+    }
+  }
+  &__half-col {
+    width: 50%;
+    box-sizing: border-box;
+    float: left;
+    &--last {
+      padding-left: 10px;
+    }
+    &--first {
+      padding-right: 10px;
+    }
+  }
+  &__phone {
+    &-tel {
+      width: calc(65% - 10px) !important;
+      float: right;
+    }
+    &-code {
+      float: left;
+      margin-right: 3px;
+      width: 35% !important;
+    }
+  }
+  &__inline > span {
+    display: inline-block;
+  }
+  &__vert {
+    & .b-form__radio {
+      padding-bottom: 2px;
+    }
+  }
+  &__list {
+    width: 50%;
+    float: left;
+    &::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+    &-item {
+      width: 100%;
+      // float: left;
+      box-sizing: border-box;
+      &:nth-of-type(even) {
+        padding-left: 0;
+      }
+      &:nth-of-type(odd) {
+        padding-right: 0;
+      }
+    }
+  }
+  &__squere {
+    input {
+      padding-right: 20px;
+    }
+    &::after {
+      content: 'm²';
+    }
+  }
+  &__euro {
+    input {
+      padding-right: 12px;
+    }
+    &::after {
+      content: '€';
+    }
+  }
+  &__year {
+    input {
+      padding-right: 38px;
+    }
+    &::after {
+      content: 'Jahre';
+    }
+  }
+  &__percent{
+    input {
+      padding-right: 18px;
+    }
+    &::after {
+      content: '%';
+    }
+  }
+  &__months{
+    input {
+      padding-right: 48px;
+    }
+    &::after {
+      content: 'Monate';
+    }
+  }
+  &__euro,
+  &__squere,
+  &__year,
+  &__percent,
+  &__months{
+    position: relative;
+    input {
+      text-align: right;
+    }
+    &::after {
+      display: block;
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      line-height: 5px;
+    }
+  }
+  &__block-inside{
+    margin-bottom: 10px;
+  }
+  &__buy-landplots{
+    background: #fff;
+    border: 1px solid #d9d9d7;
+    border-top: none;
+    padding: 10px;
+    .b-form__input{
+      width: 14%;
+    }
+    .b-buy__options{
+      float: right;
+    }
+    .slash{
+      font-size: 18px;
+      margin-left: -10px;
+    }
+  }
+  &__rights{
+    .b-form__list-view{
+      padding: 10px;
+    }
+  }
+  &__text{
+    margin: 0 10px;
+  }
+  &__fields{
+    .b-form__input,
+    .b-form__checkbox{
+      display: inline-block;
+      margin-right: 5px;
+      label{
+        color: #8e8e8e;
+        font-size: 11px;
+        white-space: nowrap;
+        height: 13px;
+        display: block;
+        margin-right: -10px;
+      }
+    }
+    .b-form__input-short{
+      margin-right: 15px;
+      width: 4%;
+    }
+
+  }
+  &__input-middle{
+    width: 10%;
+  }
+  &__input-large{
+    width: 200px;
+  }
+  &__single{
+    ul{
+      border-right: 2px solid #d9d9d7;
+      padding-right: 10px;
+    }
+  }
+  &__group-child{
+    span{
+      display: inline-block;
+      margin-right: 20px;
+      color: #8e8e8e;
+      font-size: 11px;
+    }
+    .text-title{
+      margin-right: 15px;
+    }
+  }
+  &__group-child-last{
+    padding: 12px 0;
+  }
+  &__group-text{
+    float: left;
+  }
+  &__wrap-box{
+    .b-form__input{
+      float: right;
+    }
+  }
+  &__block-select{
+    padding: 10px 0;
+  }
+  &__loans{
+    float: right;
+    margin-right: 10px;
+    .b-form__euro{
+      color: #000;
+    }
+    input{
+      border-radius: 5px;
+      width: 90px;
+    }
+  }
+
+}
+
+.textarea-notes{
+  padding-top: 5px;
+}
+.textarea-notes{
+  span{
+    width: 100%;
+  }
+}
+.btn__image{
+  margin-top: -7px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.first_form {
+  & .wrap-form {
+    width: 49%;
+    float: left;
+    &:nth-of-type(even) {
+      margin-left: 1%;
+    }
+    &:nth-of-type(odd) {
+      margin-right: 1%;
+    }
+  }
+}
+.second_form {
+  margin-bottom: 8px;
+}
+.child-form{
+  & .b-form__title{
+    margin-bottom: 0;
+    border-bottom: none;
+    .b-form__list-view-item{
+      a{
+        padding: 0;
+        font-weight: normal;
+      }
+    }
+    .b-form__right-list{
+      text-align: right;
+    }
+  }
+  & .b-form__block{
+    border-top: none;
+  }
+}
+.third_form {
+  & .b-form__list-view {
+    border-bottom: 0;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      bottom: 14px;
+      width: 2px;
+      margin-left: -1px;
+      background-color: #d9d9d7;
+    }
+  }
+  & .b-form__block {
+    border-top: 0;
+  }
+  & .b-form__blocks-separator{
+    background-color: red;
+    .b-form__list{
+      background-color: chartreuse;
+    }
+  }
+}
+.forms_group {
+  & .b-form__list-view {
+    border-bottom: 0;
+    &::before {
+      display: none;
+    }
+  }
+  & .b-form__block {
+    border-top: 0;
+    .b-form__input{
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+}
+.fifth_form{
+  margin-bottom: 10px;
+}
+
+
+
+.b-buy {
+  min-height: 69px;
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  &__item {
+    float: left;
+    box-sizing: border-box;
+    padding: 2px;
+    min-height: 1px;
+  }
+  &__name {
+    font-size: 11px;
+    font-weight: bold;
+    width: 30%;
+  }
+  &__bet {
+    width: calc(35% - 27px);
+    &-info {
+      padding-left: 22px;
+      line-height: 18px;
+      display: block;
+      background: url($imagePath + "icons/info.png") no-repeat;
+    }
+  }
+  &__begin {
+    width: calc(35% - 27px);
+  }
+  &__options {
+    text-align: right;
+    width: 54px;
+    & .btn__descr {
+      margin-right: 4px;
+    }
+  }
+  &__checkbox{
+    display: block;
+    padding: 10px;
+      input{
+        float: left;
+      }
+      label{
+        font-size: 11px;
+        float: right;
+        width: 95px;
+        line-height: 1.5;
+      }
+  }
+
+}
+.b-buy-single{
+  border-bottom: none;
+  min-height: 55px;
+}
+.b-banking {
+  &__item {
+    float: left;
+    width: 15%;
+    box-sizing: border-box;
+    padding: 0 3px;
+  }
+  &__iban,
+  &__kredit {
+    width: 20%;
+  }
+}
+.block-left{
+  float: left;
+  width: 45%;
+}
+.block-right{
+  float: right;
+  width: 50%;
+}
+label.remarks{
+  display: block;
+  margin-bottom: 10px;
+}
+span.input-remarks{
+  width: 100%;
+  margin: 0;
+}
+.b-request{
+  .b-form__title{
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  .b-main{
+    border-top: none;
+  }
+  &__section{
+    padding: 10px 0;
+    border-bottom: 2px solid #d9d9d7;
+    p{
+      line-height: 1.7;
+    }
+    &:last-of-type{
+      border-bottom: none;
+    }
+  }
+  &__title{
+    font-weight: bold;
+  }
+
+  &__block{
+    float: left;
+    width: 50%;
+    background: #f9faf3;
+    border: 1px solid #d9d9d7;
+    padding: 0 10px;
+  }
+  .b-form__fields{
+    & > span, div{
+      float: left;
+      margin-right: 20px;
+    }
+    .b-buy__option{
+      float: right;
+    }
+  }
+  .years{
+    width: 200px;
+    select{
+      width: 80%;
+    }
+    &:after{
+      content: 'Jahre';
+    }
+  }
+  &__sub-group{
+    width: 82%;
+    & > span{
+      display: inline-block;
+      border-right: 2px solid #fff;
+      padding-right: 10px;
+      margin-right: 5px;
+    }
+    .b-form__euro::after{
+      right: 15px;
+    }
+  }
+  .block-title{
+    width: 9%;
+  }
+  .small-select
+    select{
+    width: 175px;
+  }
+}

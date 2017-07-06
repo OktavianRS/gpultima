@@ -1,0 +1,88 @@
+.clearfix::before,
+.clearfix::after {
+  content: '';
+  display: block;
+}
+
+.clearfix,
+.clearfix::after {
+  clear: both;
+}
+
+
+body,
+html {
+  font-family: arial, sans-serif;
+  font-size: 12px;
+}
+
+body {
+  background: #F4F4F1;
+  padding-bottom: 140px;
+}
+
+a,
+a:visited {
+  color: #154882;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: 1008px;
+  margin: 0 auto;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left{
+  float: left;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+input,
+select,
+textarea {
+  box-sizing: border-box;
+}
+
+@import "./scss/_global_variable";
+@import "./scss/_header";
+@import "./scss/_main";
+@import "./scss/_index";
+@import "./scss/_tabs";
+@import "./scss/_buttons";
+@import "./scss/_forms";
+@import "./scss/_footer";
+@import "./scss/_login";
+
+

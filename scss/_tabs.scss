@@ -1,0 +1,82 @@
+.b-tabs {
+  &__big-user {
+    &::before {
+      background: url($imagePath + "icons/big_user.png") no-repeat;
+    }
+  }
+  &__home {
+    &::before {
+      background: url($imagePath + "icons/singl_home.png") no-repeat;
+    }
+  }
+  &__mail {
+    &::before {
+      background: url($imagePath + "icons/mail.png") no-repeat;
+    }
+  }
+  &__home-bank {
+    &::before {
+      background: url($imagePath + "icons/home.png") no-repeat;
+    }
+  }
+  &__custom {
+    &-item {
+      padding-top: 10px;
+      &--left {
+        float: left;
+      }
+      &--right {
+        float: right;
+      }
+    }
+  }
+  &__titles {
+    padding-top: 10px;
+    background: #F4F4F1;
+    border-bottom: 1px solid #d9d9d7;
+    &-item {
+      cursor: pointer;
+      color: #989898;
+      background: url($imagePath + "icons/tab_bg.png") repeat-x;
+      float: left;
+      margin: 8px 16px 3px 0;
+      position: relative;
+      padding-left: 42px;
+      border: 1px solid #d9d9d7;
+      border-radius: 4px;
+      &::before {
+        content: '';
+        display: block;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: -9px;
+        left: 8px;
+      }
+      span {
+        margin: 5px 12px 2px 0;
+        font-weight: bold;
+        display: block;
+      }
+      &:hover {
+        color: #666666;
+      }
+      &--current {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom: none;
+        transform: translateY(4px);
+        padding-bottom: 1px;
+        color: black;
+        background: white;
+      }
+    }
+  }
+  &__container {
+    background-color: white;
+    padding: 8px 12px 8px 8px;
+    border: 1px solid #d9d9d7;
+    border-top: none;
+    border-radius: 0 2px 2px 2px
+  }
+}
