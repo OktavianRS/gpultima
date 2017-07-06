@@ -584,16 +584,17 @@
                         <img class="btn btn__plus btn--light"
                              src="content/images/icons/plus.png"
                              ng-click="vm.addGrundbuchdaten()"
+                             ng-hide="vm.GrundbuchdatenAdded.state"
                              alt="plus_btn"> Grundbuchdaten erfassen</h4>
-                    <div class=" b-form__block">
+                    <div class=" b-form__block" ng-show="vm.GrundbuchdatenAdded.state">
                         <span class="b-form__address clearfix ">
                                     <span class="b-form__input b-form__address-short">
                                         <label for="grunduch">Grundbuch von (Ort)</label>
-                                        <input id="grunduch" type="text">
+                                        <input id="grunduch" ng-model="vm.GrundbuchdatenAdded.grunduch" type="text">
                                     </span>
                                     <span class="b-form__input b-form__address-short">
                                         <label for="blatt">Blatt (Band: optional)</label>
-                                        <input id="blatt" type="text">
+                                        <input id="blatt" ng-model="vm.GrundbuchdatenAdded.blatt" type="text">
                                     </span>
                                 </span>
 
@@ -604,7 +605,8 @@
                                 <a>
                                     <img class="btn btn__plus btn--light"
                                          src="content/images/icons/plus.png"
-                                         alt="plus_btn">
+                                         alt="plus_btn"
+                                         ng-click="vm.addFlurstuck()">
                                     Weiteres Flurstück erfassen
                                 </a>
                             </div>
@@ -619,49 +621,61 @@
                                 width: 120px !important;
                             }
                         </style>
-                        <div style="background: rgb(255,255,255);padding: 5px 5px;margin: 0 1.5px 0 1px;">
+                        <div style="background: rgb(255,255,255);padding: 5px 5px;margin: 0 1.5px 0 1px;"
+                            ng-repeat="item in vm.Flurstuck track by $index">
                             <span class="b-form__address clearfix ">
                                     <span class="b-form__input short_span b-form__address-short">
                                         <label for="flur">Flur</label>
-                                        <input class="short_input" id="flur" type="text">
+                                        <input ng-model="item.flur" class="short_input" id="flur" type="text">
                                     </span>
                                     <span class="b-form__input short_span b-form__address-short">
                                         <label for="flurstuck">Flurstück</label>
-                                        <input class="short_input" id="flurstuck" type="text">
+                                        <input ng-model="item.flurstuck" class="short_input" id="flurstuck" type="text">
                                     </span>
                                 <span class="b-form__input short_span b-form__address-short">
                                         <label for="anteil">Anteil am Flurstück</label>
-                                        <input class="short_input" id="anteil" type="text">
+                                        <input ng-model="item.anteil" class="short_input" id="anteil" type="text">
                                     </span>
                                 <span class="b-form__input short_span b-form__address-short">
                                         <label for="anteil2"></label>
-                                        <input class="short_input" id="anteil2" type="text">
+                                        <input ng-model="item.anteil2" class="short_input" id="anteil2" type="text">
                                     </span>
                                 <span class="b-form__input short_span b-form__address-short">
                                         <label for="des_flurs">Größe des Flurstücks</label>
-                                        <input class="short_input" id="des_flurs" type="text">
+                                        <input ng-model="item.desFlurs" class="short_input" id="des_flurs" type="text">
+                                    </span>
+                                    <span class="b-form__input short_span b-form__address-short">
+                                        <img src="content/images/icons/trash_basket.png"
+                                             class="btn btn__trash btn--light"
+                                             style="margin-top: 15px;"
+                                             ng-click="vm.deleteFlurstuck($index)">
                                     </span>
                                 </span>
                         </div>
                         <h4 class="b-form__sub-header">
+                            <img class="btn btn__plus btn--light"
+                                src="content/images/icons/plus.png"
+                                ng-click="vm.addRechte()"
+                                ng-hide="vm.RechteAdded.state"
+                                alt="plus_btn">
                             Rechte in Abteilung II vorhanden?
                         </h4>
-                        <div style="background: rgb(255,255,255);padding: 5px 5px;margin: 0 1.5px 0 1px;">
+                        <div ng-show="vm.RechteAdded.state" style="background: rgb(255,255,255);padding: 5px 5px;margin: 0 1.5px 0 1px;">
                             <span class="b-form__address clearfix ">
                                     <span class="b-form__input short_span b-form__address-short">
                                         <label for="betrag">Betrag (wertmindernd)</label>
-                                        <input class="short_input" id="betrag" type="text">
+                                        <input ng-model="vm.RechteAdded.betrag" class="short_input" id="betrag" type="text">
                                     </span>
                                     <span class="b-form__input short_span b-form__address-short">
                                         <label for="beschreibung">Beschreibung</label>
-                                        <input class="short_input" id="beschreibung" type="text">
+                                        <input ng-model="vm.RechteAdded.beschreibung" class="short_input" id="beschreibung" type="text">
                                     </span>
                                 </span>
                         </div>
                         <span class="b-form__address clearfix ">
                                     <span class="b-form__input b-form__address-short">
                                         <label for="anmerkungen">Weitere Anmerkungen zum Grundbuch</label>
-                                        <textarea id="anmerkungen"></textarea>
+                                        <textarea ng-model="vm.RechteAdded.anmerkungen" id="anmerkungen"></textarea>
                                     </span>
                                 </span>
                     </div>
