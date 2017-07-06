@@ -93,13 +93,13 @@
                         <div class="b-banking__item b-banking__blz no-float">
                             <span class="b-form__input">
                                 <label for="username">Benutzername</label>
-                                <input id="username" type="text">
+                                <input id="username" type="text" ng-model="vm.newUser.Email">
                             </span>
                             <span class="b-form__input">
                                 <label for="password">Kennwort</label>
-                                <input id="password" type="password">
+                                <input id="password" type="password" ng-model="vm.newUser.Password">
                             </span>
-                            <button type="submit">Benutzer anlegen</button>
+                            <button ng-click="vm.register()" type="submit">Benutzer anlegen</button>
                         </div>
                     </form>
                     <div class="label">Benutzer:</div>

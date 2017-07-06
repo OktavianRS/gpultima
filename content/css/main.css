@@ -1573,3 +1573,18 @@ input {
     width: auto;    
     margin-top: -15px;
 }
+
+.arrow {
+    height: 30px;
+    width: 30px;
+    margin-left: -10px;
+    margin-top: -10px;
+    transition: 0.3s ease-in all;
+    cursor: pointer;
+    outline: none;
+    transform: rotate(-90deg)
+}
+
+.arrow.show {
+    transform: rotate(0deg);
+}
