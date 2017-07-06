@@ -490,7 +490,17 @@
                 },
                 menuOneBank: [],
                 menuTwoBank: [],
-                childrens: []
+                childrens: [],
+                bankverbindung: [{
+                    bankverbindungId: '',
+                    bic: '',
+                    blz: '',
+                    cred_inst: '',
+                    familyUnion: '',
+                    iban: '',
+                    kont: '',
+                    num: '',
+                }]
             }; 
         }
 
@@ -1310,7 +1320,6 @@
         $scope.toggleModal = function () {
             $scope.modalShown = !$scope.modalShown;
         };
-
         var filtered = users_data.map(function(value) {
             value.FamilyMemDate = new Date(value.FamilyMemDate);
             return value;

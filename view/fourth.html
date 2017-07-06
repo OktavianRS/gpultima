@@ -5,6 +5,9 @@
                 <li class="b-header__nav-item">
                     <a ui-sref="dashboard">Übersicht</a>
                 </li>
+                <li class="b-header__nav-item">
+                    <a ui-sref="register">Initiales Passwort</a>
+                </li>
             </ul>
         </nav>
         <nav class="b-header__links-nav" role="navigation">
@@ -87,12 +90,10 @@
                 <li class="b-tabs__titles-item b-tabs__titles-item--current b-tabs__home" ui-sref="fourth({id: vm.params_id})"><span>DOKUMENTE</span></li>
             </ul>
             <div class="b-tabs__container">
-                <div class="b-form__title-dark b-form__title">
-                    <form class="document-input">
-                        <button class="add-document-button" type="submit">hinzufügen von Dokumenten</button>
-                        <input type="file" multiple>
-                    </form>
-                </div>
+                <form class="document-input">
+                    <button class="add-document-button" type="submit">hinzufügen von Dokumenten</button>
+                    <input data-buttonText="Your label here." type="file" multiple>
+                </form>
                 <div class="documents-list">
                     <div class="item">Document name</div>
                     <div class="item">Document name</div>

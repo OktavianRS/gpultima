@@ -5,6 +5,9 @@
                 <li class="b-header__nav-item">
                     <a ui-sref="dashboard">Übersicht</a>
                 </li>
+                <li class="b-header__nav-item">
+                    <a ui-sref="register">Initiales Passwort</a>
+                </li>
             </ul>
         </nav>
         <nav class="b-header__links-nav" role="navigation">
@@ -935,16 +938,16 @@
                             <p class="b-request__title">Bausparvertrag</p>
                         </div>
                         <div class="b-request__sub-group">
-                                <span class="b-form__input">
+                                <d class="b-form__input">
                                     <label for="tarif">Tarif</label>
                                     <div class="dropdown">
                                         <button ng-click="vm.toggleTarifDropdown()" class="dropbtn">Finanzierungsbaustein &#9660;</button>
-                                        <div id="tarifDropdown" class="dropdown-content">
-                                            <span class="b-form__radio">
+                                        <s id="tarifDropdown" class="dropdown-content">
+                                            <span class="group-item">
                                                 <input ng-model="item.abschlussgebuhr" name="immediate_payment" id="sofortzahlung" type="radio">
                                                 <label for="sofortzahlung">Sofortzahlung</label>
                                             </span>
-                                            <span class="b-form__radio">
+                                            <span class="group-item">
                                                 <input ng-model="item.abschlussgebuhr" name="immediate_payment" id="sofortzahlung" type="radio">
                                                 <label for="sofortzahlung">Sofortzahlung</label>
                                             </span>

@@ -1554,3 +1554,22 @@ input {
     margin-left: 100px;
     color: #908a8a;
 }
+
+.group-item {
+    display: block;
+    float: none;
+    margin: 10px;
+}
+
+.group-item > input{
+    display: inline-block;
+    width: auto;
+    margin-top: 0px;
+    height: auto;
+}
+
+.group-item > label{
+    display: inline-block!important;
+    width: auto;    
+    margin-top: -15px;
+}
