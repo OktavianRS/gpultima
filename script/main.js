@@ -696,6 +696,28 @@
         vm.removeItem = removeItem;
         vm.usersSearch = usersSearch;
         vm.users = usersSearch.user;
+        vm.addGrundbuchdaten = addGrundbuchdaten;
+        vm.GrundbuchdatenAdded = {
+            state: false,
+            grunduch: '',
+            blatt: ''
+        };
+        vm.addRechte = addRechte;
+        vm.RechteAdded = {
+            state: false,
+            betrag: '',
+            beschreibung: '',
+            anmerkungen: '',
+        };
+        vm.Flurstuck = [{
+            flur: '',
+            flurstuck: '',
+            anteil: '',
+            anteil2: '',
+            desFlurs: '',
+        }];
+        vm.addFlurstuck = addFlurstuck;
+        vm.deleteFlurstuck = deleteFlurstuck;
 
         $scope.modalShown = false;
         $scope.toggleModal = function () {
@@ -706,6 +728,21 @@
             if (!itemIsFilled(data)) {
                 data.items.push({});
             }
+        }
+
+        function addFlurstuck() {
+            vm.Flurstuck.push({});
+        }
+
+        function deleteFlurstuck(index) {
+            vm.Flurstuck.splice(index, 1);
+        }
+
+        function addGrundbuchdaten() {
+            vm.GrundbuchdatenAdded.state = true;
+        }
+        function addRechte() {
+            vm.RechteAdded.state = true;
         }
 
         function itemIsFilled(data) {
@@ -859,18 +896,21 @@
 
             var id = parseInt($sessionStorage.memberId);
             vm.bank.id = $stateParams.id || id;
+            vm.bank.GrundbuchdatenAdded = vm.GrundbuchdatenAdded;
+            vm.bank.RechteAdded = vm.RechteAdded;
+            vm.bank.Flurstuck = vm.Flurstuck;
 
             mem_second.data.status ?
                 post_url = 'http://itls-hh.eu/Rest/ImmobileUpdate' :
                 post_url = 'http://itls-hh.eu/Rest/Immobile';
 
+            console.log(vm.bank);
             $.ajax({
                 type: "POST",
                 traditional: true,
                 url: post_url,
                 data: {'data': JSON.stringify(vm.bank)}
             });
-            console.log(vm.bank);
         }
 
 
