@@ -157,15 +157,15 @@
                         <div class="b-form__child-item">
                             <h4>We wird die lmmobilie genutzt?</h4>
                             <span class="b-form__radio">
-                                <input name="eigennutzung" id="eigennutzung" type="radio">
+                                <input name="eigennutzung" id="eigennutzung" type="radio" value="Eigennutzung" ng-model="vm.data.genutzt">
                                 <label for="eigennutzung">Eigennutzung</label>
                             </span>
                             <span class="b-form__radio">
-                                <input name="vermietet" id="vermietet" type="radio">
+                                <input name="vermietet" id="vermietet" type="radio" value="Vermietet" ng-model="vm.data.genutzt">
                                 <label for="vermietet">Vermietet</label>
                             </span>
                             <span class="b-form__radio">
-                                <input name="beides" id="beides" type="radio">
+                                <input name="beides" id="beides" type="radio" value="Beides" ng-model="vm.data.genutzt">
                                 <label for="beides">Beides</label>
                             </span>
                             <span class="b-form__input">
