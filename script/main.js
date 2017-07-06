@@ -83,7 +83,13 @@
                     url: "/register",
                     templateUrl: 'view/registration.html',
                     controller: 'RegisterCtrl',
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
+                    resolve: {
+                        users: function ($stateParams, $sessionStorage, request) {
+                            // return request('GET', 'AccountManage/ListUser');
+                            return []
+                        }
+                    }
                 })
                 .state('dashboard', {
                     url: "/dashboard",
@@ -268,7 +274,7 @@
                 name: 'Lebens-/ Rentenversicherung',
                 max: 3,
                 current: 0,
-                id: 'Rentenversicherung',
+                id: 'LebensRentenversicherung',
                 items: []
             },
             {
@@ -413,7 +419,7 @@
                     if (mem_index.data.menuBank.hasOwnProperty(key)) {
                         bankData = {};
                         bankName = key.replace(tableName, '');
-                        console.log(mem_index.data.menuBank[key]);
+                        console.log(eval(mem_index.data.menuBank[key]), bankName);
                         bankData[bankName] = eval(mem_index.data.menuBank[key]);
                         if ((bankIndex = vm.menuBankIdList2.indexOf(bankName)) >= 0) {
                             mem_index.data.menuTwoBank.push(bankData);
@@ -443,13 +449,14 @@
                     var newKey = '';
                     for (var k in item) {
                         newKey = k.replace(childTableName, '').toLowerCase();
+                        if (k === 'FamilyChildrenKindergeId')
+                        result[k] = item[k];
                         result[newKey] = item[k]
                     }
                     console.log(result);
                     return result;
                 })
             }
-            console.log(vm.kinder);
         }
 
 
@@ -930,17 +937,95 @@
         vm.addZinsabsicherung = addZinsabsicherung;
         vm.addVariablesDarlehen = addVariablesDarlehen;
         vm.getLabel = getLabel;
+        vm.toggleAnfrage = toggleAnfrage;
+        vm.anfrageIsOpened = true;
+
+        function toggleAnfrage(item) {
+            console.log(item)
+            item.anfrageIsOpened = !item.anfrageIsOpened;
+            vm.anfrageIsOpened = !vm.anfrageIsOpened;
+        }
 
         $scope.modalShown = false;
         $scope.toggleModal = function () {
             $scope.modalShown = !$scope.modalShown;
         };
 
-        function addItem(data) {
+        function addItem(data, text, heh) {
             console.log(data);
-            data.items.push({
-                a: 5
-            });
+            if (!data.items)
+                data.items = [];
+            switch(text) {
+                case 'addAnnuitatendarlehen':
+                    data.items.push({
+                        name: 'Annuitatendarlehen',
+                        darlehensbetrag: '',
+                        zinsbindung: '',
+                        tilgungswunschName: '',
+                        tilgungswunschValue: '',
+                        sondertilgung: '',
+                        bereit: '',
+                    });
+                break;
+                case 'addPrivatdarlehen':
+                    data.items.push({
+                        name: 'addPrivatdarlehen',
+                        darlehensbetrag: '',
+                        laufzeit: '',
+                        bank: '',
+                        kreditbetrag: '',
+                        restchuldversicherung: {
+                            eur: '',
+                            au: '',
+                        }
+                    });
+                break;
+                case 'addVariablesDarlehen':
+                    data.items.push({
+                        name: 'addVariablesDarlehen',
+                        darlehensbetrag: '',
+                        zinsbindung: '',
+                        tilgungswunsch: '',
+                        sondertilgung: '',
+                        auszahlungszeitpunkt: ''
+                    });
+                break;
+                case 'addForwarddarlehen':
+                    data.items.push({
+                        name: 'addForwarddarlehen',
+                        darlehensbetrag: '',
+                        zinsbindung: '',
+                        tilgungswunsch: '',
+                        sondertilgung: '',
+                        auszahlungszeitpunkt: ''
+                    });
+                break;
+                case 'addZinsabsicherung':
+                    data.items.push({
+                        name: 'addZinsabsicherung',
+                        tarif: '',
+                        group1: null,
+                        group2: null,
+                        group3: null,
+                        group4: null,
+                        freiBesparen: '',
+                        abtreten: '',
+                        sondertilgung: '',
+                        auszahlungszeitpunkt: '',
+                        bausparwunschAnpassen: '',
+                        abschlussgebuhr: '',
+                        verrechnung: '',
+                        darlehensbetrag: '',
+                        vertragspartner: '',
+                    });
+                break;
+                case '':
+                    data.items.push(heh);
+                break;
+                default:
+                    return null;
+
+            }
         }
 
         function addA() {
@@ -955,7 +1040,6 @@
                 field: '',
                 anfragen: '',
                 storno: false,
-                items: [],
             });
         }
 
@@ -1000,8 +1084,8 @@
             data.items.splice(item, 1);
         }
 
-        function removeOneItem(data, item) {
-            data.splice(item, 1);
+        function removeOneItem(data, index) {
+            data.splice(index, 1);
         }
 
         function submit() {
@@ -1044,7 +1128,8 @@
         }
 
         vm.kfwPushed = [];
-        vm.kfw = mem_third && mem_third.data ? mem_third.data.kfw : [
+        //  mem_third && mem_third.data ? mem_third.data.kfw : 
+        vm.kfw = [
             {
                 name: 'KfW Wohneigentumsprogramm',
                 linkName: 'Selbstgenutztes Eigentum (124)',
@@ -1326,20 +1411,47 @@
         }
     }
 
-    RegisterCtrl.$inject = ['$scope', '$http'];
-    function RegisterCtrl($scope, $http) {
+    RegisterCtrl.$inject = ['$scope', '$http', 'users'];
+    function RegisterCtrl($scope, $http, users) {
 
         var vm = this;
-
-        vm.login = login
+        vm.users = users || [];
+        vm.newUser = {
+            PrimaryRole: 1
+        }
 
         vm.user = {
             email: '',
             password: ''
         };
 
-        function login() {
-            console.log(vm.user);
+        vm.register = register;
+        vm.deleteUser = deleteUser;
+        vm.updateUser = updateUser;
+
+        function register() {
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                data: {data: JSON.stringify(vm.newUser)},
+                url: 'http://itls-hh.eu/AccountManage/AddUser'
+            });
+        }
+        function deleteUser(BenutzerId) {
+            $.ajax({
+                type: "DELETE",
+                traditional: true,
+                data: {data: JSON.stringify({BenutzerId})},
+                url: 'http://itls-hh.eu/AccountManage/DeleteUser'
+            });
+        }
+        function updateUser(BenutzerId, NewPassword) {
+            $.ajax({
+                type: "PUT",
+                traditional: true,
+                data: {data: JSON.stringify({BenutzerId: BenutzerId, NewPassword: NewPassword})},
+                url: 'http://itls-hh.eu/AccountManage/UpdateUser'
+            });
         }
     }
 
@@ -1347,6 +1459,9 @@
     function DashboardCtrl($scope, $http, users_data) {
 
         var vm = this;
+        vm.data = {
+
+        };
 
         $scope.modalShown = false;
         $scope.toggleModal = function () {
