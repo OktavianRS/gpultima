@@ -938,19 +938,124 @@
                             <p class="b-request__title">Bausparvertrag</p>
                         </div>
                         <div class="b-request__sub-group">
-                                <d class="b-form__input">
+                                <span class="b-form__input">
                                     <label for="tarif">Tarif</label>
                                     <div class="dropdown">
-                                        <button ng-click="vm.toggleTarifDropdown()" class="dropbtn">Finanzierungsbaustein &#9660;</button>
-                                        <s id="tarifDropdown" class="dropdown-content">
-                                            <span class="group-item">
-                                                <input ng-model="item.abschlussgebuhr" name="immediate_payment" id="sofortzahlung" type="radio">
-                                                <label for="sofortzahlung">Sofortzahlung</label>
-                                            </span>
-                                            <span class="group-item">
-                                                <input ng-model="item.abschlussgebuhr" name="immediate_payment" id="sofortzahlung" type="radio">
-                                                <label for="sofortzahlung">Sofortzahlung</label>
-                                            </span>
+                                        <button ng-click="vm.toggleTarifDropdown()" class="dropbtn">{{vm.getLabel({group1: item.group1, group2: item.group2,group3: item.group3, group4: item.group4})}} &#9660;</button>
+                                        <div id="tarifDropdown" class="dropdown-content">
+                                            <h5>BHW Bausparkasse</h5>
+                                            <form>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group1" value="FI1" name="immediate_payment" id="1pc" type="radio">
+                                                    <label for="1pc">BHW WohnBausparen 1,00% (FI1)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group1" value="FI2" name="immediate_payment" id="2pc" type="radio">
+                                                    <label for="2pc">BHW WohnBausparen 2,35% (FI2)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group1" value="FX1" name="immediate_payment" id="1xpc" type="radio">
+                                                    <label for="1xpc">BHW WohnBausparen Plus 1,25% (FX1)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group1" value="FX2" name="immediate_payment" id="2xpc" type="radio">
+                                                    <label for="2xpc">BHW WohnBausparen Plus 2,35% (FX2)</label>
+                                                </span>
+
+                                            </form>
+                                            <h5>BKM</h5>
+                                            <form>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group2" value="Bester Zins" name="immediate_payment" id="1mx" type="radio">
+                                                    <label for="1mx">maxPremium (Bester Zins)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group2" value="Niedrige Sparrate" name="immediate_payment" id="2mx" type="radio">
+                                                    <label for="2mx">maxPremium (Niedrige Sparrate)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group2" value="Niedrige Tilgung" name="immediate_payment" id="3mx" type="radio">
+                                                    <label for="3mx">maxPremium (Niedrige Tilgung)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group2" value="Optimal" name="immediate_payment" id="4mx" type="radio">
+                                                    <label for="4mx">maxPremium (Optimal)</label>
+                                                </span>
+                                            </form>
+                                            <h5>BKM</h5>
+                                            <form>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group3" value="FT/25" name="immediate_payment" id="1tx" type="radio">
+                                                    <label for="1tx">Tarif FT/25 - niedrige Sparrate</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group3" value="FT/32" name="immediate_payment" id="2tx" type="radio">
+                                                    <label for="2tx">Tarif FT/32 - optimal</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group3" value="FT/40" name="immediate_payment" id="3tx" type="radio">
+                                                    <label for="3tx">Tarif FT/40 - niedrige Tilgung</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group3" value="XT/30" name="immediate_payment" id="4tx" type="radio">
+                                                    <label for="4tx">Tarif XT/30 - niedrige Sparrate</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group3" value="XT/40" name="immediate_payment" id="5tx" type="radio">
+                                                    <label for="5tx">Tarif XT/40 - niedrige Tilgung</label>
+                                                </span>
+                                            </form>
+                                            <h5>Signal Iduna</h5>
+                                            <form>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 30" name="immediate_payment" id="1fr" type="radio">
+                                                    <label for="1fr">FREIraum (F 30)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 30m" name="immediate_payment" id="2fr" type="radio">
+                                                    <label for="2fr">FREIraum (F 30)/Mehrzuteilung</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 35" name="immediate_payment" id="3fr" type="radio">
+                                                    <label for="3fr">FREIraum (F 35)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 35m" name="immediate_payment" id="4fr" type="radio">
+                                                    <label for="4fr">FREIraum (F 35)/Mehrzuteilung</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 40" name="immediate_payment" id="5fr" type="radio">
+                                                    <label for="5fr">FREIraum (F 40)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 40m" name="immediate_payment" id="6fr" type="radio">
+                                                    <label for="6fr">FREIraum (F 40)/Mehrzuteilung</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 45" name="immediate_payment" id="7fr" type="radio">
+                                                    <label for="7fr">FREIraum (F 45)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 45m" name="immediate_payment" id="8fr" type="radio">
+                                                    <label for="8fr">FREIraum (F 45)/Mehrzuteilung</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 50" name="immediate_payment" id="9fr" type="radio">
+                                                    <label for="9fr">FREIraum (F 50)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 50m" name="immediate_payment" id="10fr" type="radio">
+                                                    <label for="10fr">FREIraum (F 50)/Mehrzuteilung</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 60" name="immediate_payment" id="11fr" type="radio">
+                                                    <label for="11fr">FREIraum (F 60)</label>
+                                                </span>
+                                                <span class="group-item">
+                                                    <input ng-model="item.group4" value="F 60m" name="immediate_payment" id="12fr" type="radio">
+                                                    <label for="12fr">FREIraum (F 60)/Mehrzuteilung</label>
+                                                </span>
+                                            </form>
                                         </div>
                                     </div>
                                 </span>

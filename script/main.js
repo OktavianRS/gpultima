@@ -629,6 +629,7 @@
             var data;
             if (typeof parseInt($stateParams.id) == 'number' && $stateParams.id >= 1) {
                 vm.data.id = $stateParams.id;
+                console.log(vm.data)
                 data = JSON.stringify(vm.data);
 
                 $.ajax({
@@ -928,6 +929,7 @@
         vm.addAnnuitatendarlehen = addAnnuitatendarlehen;
         vm.addZinsabsicherung = addZinsabsicherung;
         vm.addVariablesDarlehen = addVariablesDarlehen;
+        vm.getLabel = getLabel;
 
         $scope.modalShown = false;
         $scope.toggleModal = function () {
@@ -1187,6 +1189,10 @@
         function addZinsabsicherung() {
             vm.Zinsabsicherung.push({
                 tarif: '',
+                group1: null,
+                group2: null,
+                group3: null,
+                group4: null,
                 freiBesparen: '',
                 abtreten: '',
                 sondertilgung: '',
@@ -1197,6 +1203,32 @@
                 darlehensbetrag: '',
                 vertragspartner: '',
             })
+        }
+
+        function checkForNulls(data) {
+            var counter = 0;
+            var index = null;
+            for (var item in data) {
+                if (data[item] !== null) {
+                    counter++;
+                    index = item;
+                }
+            }
+            return {
+                counter,
+                index,
+            }
+        }
+
+        function getLabel(tg) {
+            console.log(tg);
+            var nuls = checkForNulls(tg);
+            if (nuls.counter === 0) {
+                return 'Automatish';
+            } else if (nuls.counter === 1) {
+                return tg[nuls.index];
+            }
+            return 'mehre';
         }
 
         vm.Zinsabsicherung = [];
