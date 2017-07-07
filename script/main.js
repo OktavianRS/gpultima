@@ -1542,6 +1542,7 @@
     function DashboardCtrl($scope, $http, users_data) {
 
         var vm = this;
+        vm.partnergeschaft = 0;
         vm.data = {
 
         };

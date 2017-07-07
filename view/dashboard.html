@@ -169,13 +169,13 @@
                                 <option value="-1" selected="selected">Bitte wählen Sie ...</option>
                                 <option value="1">Verheiratet</option>
                                <option value="2">Horst</option>
- <option value="3">Bild</option>
- <option value="4">Mailing</option>
- <option value="5">Empfehlung</option>
- <option value="6">Internet</option>
- <option value="7">Promotion</option>
- <option value="8">Morgenpost</option>
- <option value="9">Kiel</option>
+                                <option value="3">Bild</option>
+                                <option value="4">Mailing</option>
+                                <option value="5">Empfehlung</option>
+                                <option value="6">Internet</option>
+                                <option value="7">Promotion</option>
+                                <option value="8">Morgenpost</option>
+                                <option value="9">Kiel</option>
                                 <option value="10">Schnellantrag</option>
 
 
@@ -195,14 +195,14 @@
                         <div class="b-form__child-item">
                             <h4>Partnergeschäft</h4>
                             <span class="b-form__radio">
-                                    <input value="0" id="nein" type="radio">
+                                    <input ng-model="vm.partnergeschaft" value="0" id="nein" type="radio">
                                     <label for="nein">nein</label>
                                 </span>
                             <span class="b-form__radio">
-                                    <input value="1" id="ja" type="radio">
+                                    <input ng-model="vm.partnergeschaft" value="1" id="ja" type="radio">
                                     <label for="ja">ja</label>
                                 </span>
-                            <select id="partners">
+                            <select id="partners" ng-show="vm.partnergeschaft === '1'">
                                 <option value="-1" selected="selected">Bitte wählen Sie ...</option>
                                 <option value="1">Michael Tauchert </option>
                                 <option value="2">Hermann Kahlke</option>
