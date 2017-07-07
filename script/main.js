@@ -274,7 +274,7 @@
                 name: 'Lebens-/ Rentenversicherung',
                 max: 3,
                 current: 0,
-                id: 'LebensRentenversicherung',
+                id: 'Rentenversicherung',
                 items: []
             },
             {
@@ -419,6 +419,8 @@
                     if (mem_index.data.menuBank.hasOwnProperty(key)) {
                         bankData = {};
                         bankName = key.replace(tableName, '');
+                        if (bankName === 'LebensRentenversicherung')
+                            bankName = 'Rentenversicherung';
                         console.log(eval(mem_index.data.menuBank[key]), bankName);
                         bankData[bankName] = eval(mem_index.data.menuBank[key]);
                         if ((bankIndex = vm.menuBankIdList2.indexOf(bankName)) >= 0) {
