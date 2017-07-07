@@ -1422,6 +1422,49 @@
             }
         }
 
+        vm.hard = [
+            'CTB Bank von Essen GmbH & Co',
+
+            'CTB Braunschweig',
+
+
+            'KB Segeberg',
+
+            'WKG Neumünster e.G.',
+
+            'Oyak Anker Bank',
+
+            'DSK Allkredit',
+
+            'Allgemeine Deutsche Direkt Bank',
+
+            'VVK (Alt)',
+
+            'Service Bank',
+
+            'WKV Bank',
+
+            'Aachener',
+
+            'WKV Bank (alt)',
+
+            'Solitär',
+
+            'Service Bank Kiel',
+
+            'Service Bank Rostock',
+
+            'Badenia',
+
+            'Norisbank AG',
+
+            '-Internet- von Essen KG',
+
+            '-Internet- Service Bank',
+
+            '-Internet- Schweizer',
+        ]
+
     }
 
     FourthCtrl.$inject = ['$scope', '$sessionStorage', 'mem_fourth', 'usersSearch', '$stateParams'];
