@@ -896,9 +896,9 @@
 
             var id = parseInt($sessionStorage.memberId);
             vm.bank.id = $stateParams.id || id;
-            vm.bank.GrundbuchdatenAdded = vm.GrundbuchdatenAdded;
-            vm.bank.RechteAdded = vm.RechteAdded;
-            vm.bank.Flurstuck = vm.Flurstuck;
+            // vm.bank.GrundbuchdatenAdded = vm.GrundbuchdatenAdded;
+            // vm.bank.RechteAdded = vm.RechteAdded;
+            // vm.bank.Flurstuck = vm.Flurstuck;
 
             mem_second.data.status ?
                 post_url = 'http://itls-hh.eu/Rest/ImmobileUpdate' :
